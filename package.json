@@ -1,0 +1,26 @@
+{
+  "name": "gamers-node",
+  "version": "1.0.0",
+  "description": "Solution to Gamer problems",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/super-code-party/gamers-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/super-code-party/gamers-node/issues"
+  },
+  "homepage": "https://github.com/super-code-party/gamers-node#readme",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "pg": "^7.11.0",
+    "superagent": "^5.0.5"
+  }
+}
