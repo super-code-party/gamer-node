@@ -14,17 +14,19 @@
   <main>
     <section class="listOfSearchedGames">
 
-      <% listOfVideoGames.forEach(videoGame => { %>
-        <div class="individualGame"> 
-          <img src="<%= videoGame.cover_url; %>"/>
-          <p><%= videoGame.name; %></p>
-          <!-- <p>Category:<%= videoGame.category; %></p>
-            <p>Summary:<%= videoGame.summary; %></p> -->
-            <p>Release Date:<%= videoGame.release_date  %></p>
-          <!-- <p>Genre:<%= videoGame.genres  %></p> -->
+
+      <% listOfVideoGames.forEach(videoGame => { %>  
+        <p>Title:<%= videoGame.name; %></p>
+        <img src="<%= videoGame.cover_url; %>"/>
+        <p>Summary:<%= videoGame.summary; %></p>
+        <p>Category:<%= videoGame.category; %></p>
+        <p>Release Date:<%= videoGame.release_date  %></p>
+        <p>Genre:<%= videoGame.genres  %></p>
+        <p> Platforms: <%= videoGame.platforms %> </p>
+    
             
             
-          <section class="videoGameDetails">
+           <section class="videoGameDetails">
             <form action="/detail" method="POST">
               <input type="text" name="title" value="<%= videoGame.name %>" required>
               <input type="text" name="summary" value="<%= videoGame.id %>" required>
@@ -32,6 +34,7 @@
             </form>
           </section>
         </div>
+
       <% }) %>
     </section>
   </main>
