@@ -6,8 +6,6 @@ Leaves #506D2F, Bark #2A2922, Marble #F3EBDD, Brownstone #7D5646 */
 
 body {
   background-color: #2A2922;
-
-  display: flex;
 }
 
 h1, h2, p {
@@ -15,13 +13,31 @@ h1, h2, p {
 }
 
 header {
-  height: 10%;
+  height: 10vh;
   width: 100%;
   background-color: #506D2F;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  margin: 1%;
+  height: 75% ;
+  width: auto;
+}
+
+header i {
+  margin-right: 50px;
 }
 
 footer {
-  height: 10%;
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  
+  height: 10vh;
   width: 100%;
   background-color: #7D5642;
 }
+
