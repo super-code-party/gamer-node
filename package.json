@@ -4,7 +4,8 @@
   "description": "Solution to Gamer problems",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "psql -d games_app -f ./data/schema.sql"
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,11 @@
   },
   "homepage": "https://github.com/super-code-party/gamers-node#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "method-override": "^3.0.0",
     "pg": "^7.11.0",
     "superagent": "^5.0.5"
   }

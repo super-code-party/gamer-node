@@ -1,0 +1,15 @@
+@import url("reset.css");
+@import url("layout.css");
+@import url("modules.css");
+
+/* Colors Thanks to canva.com
+Leaves #506D2F, Bark #2A2922, Marble #F3EBDD, Brownstone #7D5646 */
+
+body {
+  background-color: #2A2922;
+}
+
+h1, h2, p {
+  color: #F3EBDD;
+}
+
