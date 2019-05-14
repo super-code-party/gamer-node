@@ -45,6 +45,14 @@ function VideoGame(info) {
   console.log('from constructor');
   this.id = info.id;
   this.name = info.name;
+  // this.cover_url = info.cover.url;
+  this.summary = info.summary;
+  // this.platforms = info.platforms.name;
+  this.category = info.category;
+  // this.genres = info.genres.name;
+  this.release_date = info.first_release_date;
+
+  console.log(info.summary);
 }
 
 
@@ -53,20 +61,30 @@ function VideoGame(info) {
 
 
 function searchInInternetGameDatabase(request, response) {
-  let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=${request.body.typeOfSearch}`;
+  // let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=${request.body.typeOfSearch}`;
+
+  let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=category,name,platforms.name,cover.url,genres.name,first_release_date,url,summary`;
   console.log(request.body.name);
+  console.log(request.body);
   console.log(request.body.typeOfSearch);
   console.log('Hello!!');
   console.log(request.body);
 
+  //${request.body.category},${request.body.platforms.name},${request.body.cover.url},${request.body.genres.name},${request.body.first_release_date},${request.body.url},${request.body.summary}`;
+
+  //category,name,platforms.name,cover.url,genres.name,first_release_date
+
   superagent.post(url)
     .set('user-key', process.env.IGDB_API_KEY)
     .set('Accept', 'application/json')
+    .then(console.log(response))
     .then(response => response.body.map(apiResult => new VideoGame(apiResult)))
     .then(videoGames => response.render('pages/gamesSearches/show', {listOfVideoGames: videoGames}))
     .catch(console.error);
 
 }
+
+
 
 
 

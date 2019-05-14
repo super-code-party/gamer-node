@@ -16,9 +16,12 @@
     <section class="listOfSearchedGames">
 
       <% listOfVideoGames.forEach(videoGame => { %>  
-      <p><%= videoGame.id; %>  </p>
-      <p><%= videoGame.name; %>  </p>
-     <% }) %>
+        <p><%= videoGame.id; %></p>
+        <p><%= videoGame.name; %></p>
+        <p><%= videoGame.summary; %></p>
+        <p><%= videoGame.category; %></p>
+        <p><%= videoGame.release_date  %></p>
+      <% }) %>
 
     </section>
   </main>
