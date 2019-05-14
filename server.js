@@ -44,17 +44,33 @@ app.post('/gameSearches/show', searchInInternetGameDatabase);
 function VideoGame(info) {
   console.log('from constructor');
   this.id = info.id;
+  console.log(info);
   this.name = info.name;
-  // this.cover_url = info.cover.url;
+
+  // let image = urlCheck(info.cover.url);
+  
+  if (!info.cover){
+    let image = 'http://1.bp.blogspot.com/-Dz_l-JwZRX8/U1bcqpZ86oI/AAAAAAAAACs/VUouedmQHic/s1600/skyrim_arrow_knee_g_display.jpg';
+  }
+  this.cover_url = urlCheck(info.cover.url) || image;
+
   this.summary = info.summary;
   // this.platforms = info.platforms.name;
   this.category = info.category;
   // this.genres = info.genres.name;
   this.release_date = info.first_release_date;
 
-  console.log(info.summary);
+  // console.log(info.summary);
 }
 
+const urlCheck = (data) => {
+  if(!data.includes('https://')) {
+    let newData = data.replace('/', 'https:/');
+    return newData;
+  }else{
+    return data;
+  }
+};
 
 
 
@@ -70,14 +86,9 @@ function searchInInternetGameDatabase(request, response) {
   console.log('Hello!!');
   console.log(request.body);
 
-  //${request.body.category},${request.body.platforms.name},${request.body.cover.url},${request.body.genres.name},${request.body.first_release_date},${request.body.url},${request.body.summary}`;
-
-  //category,name,platforms.name,cover.url,genres.name,first_release_date
-
   superagent.post(url)
     .set('user-key', process.env.IGDB_API_KEY)
     .set('Accept', 'application/json')
-    .then(console.log(response))
     .then(response => response.body.map(apiResult => new VideoGame(apiResult)))
     .then(videoGames => response.render('pages/gamesSearches/show', {listOfVideoGames: videoGames}))
     .catch(console.error);
