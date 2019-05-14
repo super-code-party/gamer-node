@@ -62,11 +62,13 @@ function VideoGame(info) {
   // this.platforms = info.platforms.name;
   this.category = info.category;
   // this.genres = info.genres.name;
-  this.release_date = info.first_release_date;
+  this.release_date = epochConvert(info.first_release_date);
 
   // console.log(info.summary);
 }
 
+
+//Converts image url from //url to https://url
 const urlCheck = (data) => {
   if(!data.includes('https://')) {
     let newData = data.replace('/', 'https:/');
@@ -76,6 +78,11 @@ const urlCheck = (data) => {
   }
 };
 
+//Converts release date from EPOCH to normal time
+const epochConvert = (time) => {
+  let date = new Date(time *1000).toString().slice(4, 15);
+  return date;
+};
 
 
 
