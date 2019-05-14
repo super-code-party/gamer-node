@@ -53,10 +53,9 @@ function VideoGame(info) {
 
   // let image = urlCheck(info.cover.url);
   
-  if (!info.cover){
-    let image = 'http://1.bp.blogspot.com/-Dz_l-JwZRX8/U1bcqpZ86oI/AAAAAAAAACs/VUouedmQHic/s1600/skyrim_arrow_knee_g_display.jpg';
-  }
-  this.cover_url = urlCheck(info.cover.url) || image;
+  // let image = 'http://1.bp.blogspot.com/-Dz_l-JwZRX8/U1bcqpZ86oI/AAAAAAAAACs/VUouedmQHic/s1600/skyrim_arrow_knee_g_display.jpg';
+  
+  this.cover_url = urlCheck(info);
 
   this.summary = info.summary;
   // this.platforms = info.platforms.name;
@@ -69,12 +68,14 @@ function VideoGame(info) {
 
 
 //Converts image url from //url to https://url
-const urlCheck = (data) => {
-  if(!data.includes('https://')) {
-    let newData = data.replace('/', 'https:/');
+const urlCheck = (info) => {
+  let image = 'http://1.bp.blogspot.com/-Dz_l-JwZRX8/U1bcqpZ86oI/AAAAAAAAACs/VUouedmQHic/s1600/skyrim_arrow_knee_g_display.jpg';
+  console.log(info.cover);
+  if (info.cover === undefined || info.cover === null) {
+    return image;
+  }else if(!info.cover.url.includes('https://')) {
+    let newData = info.cover.url.replace('/', 'https:/');
     return newData;
-  }else{
-    return data;
   }
 };
 
