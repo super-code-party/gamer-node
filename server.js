@@ -42,25 +42,53 @@ app.post('/gameSearches/show', searchInInternetGameDatabase);
 app.post('/detail', displayGameDetail);
 
 app.get('/error', errorPage);
-// Functions
+
+
 
 function VideoGame(info) {
+  console.log('from constructor');
   this.id = info.id;
+  console.log(info);
   this.name = info.name;
-  // this.cover_url = info.cover.url;
+
+  // let image = urlCheck(info.cover.url);
+  
+  if (!info.cover){
+    let image = 'http://1.bp.blogspot.com/-Dz_l-JwZRX8/U1bcqpZ86oI/AAAAAAAAACs/VUouedmQHic/s1600/skyrim_arrow_knee_g_display.jpg';
+  }
+  this.cover_url = urlCheck(info.cover.url) || image;
+
   this.summary = info.summary;
   // this.platforms = info.platforms.name;
   this.category = info.category;
   // this.genres = info.genres.name;
   this.release_date = info.first_release_date;
+
+  // console.log(info.summary);
 }
+
+const urlCheck = (data) => {
+  if(!data.includes('https://')) {
+    let newData = data.replace('/', 'https:/');
+    return newData;
+  }else{
+    return data;
+  }
+};
+
+
+
 
 
 function searchInInternetGameDatabase(request, response) {
+  // let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=${request.body.typeOfSearch}`;
 
   let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=category,name,platforms.name,cover.url,genres.name,first_release_date,url,summary`;
-
-  //category,name,platforms.name,cover.url,genres.name,first_release_date
+  console.log(request.body.name);
+  console.log(request.body);
+  console.log(request.body.typeOfSearch);
+  console.log('Hello!!');
+  console.log(request.body);
 
   superagent.post(url)
     .set('user-key', process.env.IGDB_API_KEY)
@@ -81,12 +109,10 @@ function displayGameDetail(request, response){
 }
 
 
+
 // error
 function errorPage(error, response){
   response.render('pages/error', {error: 'There was an issue. Stop breaking things!'});
 }
-
-
-
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
