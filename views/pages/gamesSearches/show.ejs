@@ -14,25 +14,25 @@
   <main>
     <section class="listOfSearchedGames">
 
-      <% listOfVideoGames.forEach(videoGame => { %>  
-        <p>Title:<%= videoGame.name; %></p>
-        <img src="<%= videoGame.cover_url; %>"/>
-        <p>Summary:<%= videoGame.summary; %></p>
-        <p>Category:<%= videoGame.category; %></p>
-        <p>Release Date:<%= videoGame.release_date  %></p>
-        <p>Genre:<%= videoGame.genres  %></p>
-          
-          
-        <section class="videoGameDetails">
-          <form action="/detail" method="POST">
-            <input type="text" name="title" value="<%= videoGame.name %>" required>
-            <input type="text" name="summary" value="<%= videoGame.id %>" required>
-            <button type="submit">See Game Details</button> 
-          </form>
-      </section>
+      <% listOfVideoGames.forEach(videoGame => { %>
+        <div class="individualGame"> 
+          <img src="<%= videoGame.cover_url; %>"/>
+          <p><%= videoGame.name; %></p>
+          <!-- <p>Category:<%= videoGame.category; %></p>
+            <p>Summary:<%= videoGame.summary; %></p> -->
+            <p>Release Date:<%= videoGame.release_date  %></p>
+          <!-- <p>Genre:<%= videoGame.genres  %></p> -->
+            
+            
+          <section class="videoGameDetails">
+            <form action="/detail" method="POST">
+              <input type="text" name="title" value="<%= videoGame.name %>" required>
+              <input type="text" name="summary" value="<%= videoGame.id %>" required>
+              <button type="submit">See Game Details</button>
+            </form>
+          </section>
+        </div>
       <% }) %>
-
-     
     </section>
   </main>
 
