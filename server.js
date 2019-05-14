@@ -46,36 +46,47 @@ app.get('/error', errorPage);
 
 
 function VideoGame(info) {
-  console.log('from constructor');
   this.id = info.id;
-  console.log(info);
   this.name = info.name;
-
-  // let image = urlCheck(info.cover.url);
-  
-  if (!info.cover){
-    let image = 'http://1.bp.blogspot.com/-Dz_l-JwZRX8/U1bcqpZ86oI/AAAAAAAAACs/VUouedmQHic/s1600/skyrim_arrow_knee_g_display.jpg';
-  }
-  this.cover_url = urlCheck(info.cover.url) || image;
-
+  this.cover_url = urlCheck(info);
   this.summary = info.summary;
   // this.platforms = info.platforms.name;
   this.category = info.category;
-  // this.genres = info.genres.name;
-  this.release_date = info.first_release_date;
+  console.log(info);
+  // console.log(info.genres[0].name);
+  // this.genres = info.genres.name || 'Genre unavailable';
+  this.genres = genreCheck(info) || 'Genre unavailable';
+  this.release_date = epochConvert(info.first_release_date);
 
-  // console.log(info.summary);
+
 }
 
-const urlCheck = (data) => {
-  if(!data.includes('https://')) {
-    let newData = data.replace('/', 'https:/');
+
+//Converts image url from //url to https://url
+const urlCheck = (info) => {
+  let image = 'http://1.bp.blogspot.com/-Dz_l-JwZRX8/U1bcqpZ86oI/AAAAAAAAACs/VUouedmQHic/s1600/skyrim_arrow_knee_g_display.jpg';
+  if (info.cover === undefined || info.cover === null) {
+    return image;
+  }else if(!info.cover.url.includes('https://')) {
+    let newData = info.cover.url.replace('/', 'https:/');
     return newData;
-  }else{
-    return data;
   }
 };
 
+//Converts release date from EPOCH to normal time
+const epochConvert = (time) => {
+  let date = new Date(time *1000).toString().slice(4, 15);
+  return date;
+};
+
+//Checks if genres exists and has safeguard for ones that don't
+const genreCheck = (info) => {
+  if(info.genres === undefined || info.genres === null){
+    return false;
+  }else{
+    return info.genres[0].name;
+  }
+};
 
 
 
