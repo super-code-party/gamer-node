@@ -15,12 +15,13 @@ const PORT = process.env.PORT || 3000;
 
 // Express middleware
 app.use(express.urlencoded({extended:true}));
-app.use(express.static('./public'));
+app.use(express.static('public'));
 
-
+//--------------------------------*
 //
 // Space left for methodOverride
 //
+//--------------------------------*
 
 // Database Setup
 const client = new pg.Client(process.env.DATABASE_URL);
@@ -36,12 +37,15 @@ app.set('view engine', 'ejs');
 app.get('/', (request, response) => {
   response.render('index');
 });
+app.get('/pages/about');
 
+app.get('/',loadGames);
 app.post('/gameSearches/show', searchInInternetGameDatabase);
 
 app.post('/detail', displayGameDetail);
 
 app.get('/error', errorPage);
+
 
 
 
@@ -51,7 +55,6 @@ function VideoGame(info) {
   this.cover_url = urlCheck(info);
   this.summary = info.summary;
   this.platforms = checkPlatforms(info) || 'Platform not avialable!';
-  this.category = info.category;
   this.genres = genreCheck(info) || 'Genre unavailable';
   this.release_date = epochConvert(info.first_release_date);
 
@@ -96,16 +99,49 @@ const checkPlatforms = (info) => {
   }
 };
 
+//VieW GAMES
+// function getGames (request, response){
+//   let SQL = `SELECT * FROM games WHERE id=$1;`;
+
+//   let values = [request.params.id];
+
+//   return client.query(SQL, values)
+//   .then(results => {
+//     response.render('/', {results: results.rows[0]});
+//   })
+//   .catch (err => errorPage(err, response));
+// }
+
+//LOAD GAMES
+
+function loadGames (request, response) {
+  let SQL = 'SELECT * FROM games;';
+
+  return client.query(SQL) 
+    .then (results => console.log({result: results.rows}))
+    .then (results => response.render('views/index', {result: results.rows}))
+    .catch (err => errorPage(err, response));
+
+
+}
+
+// // SAVE GAME FUNCTION
+// function saveGames (request, response) {
+//   let {name, cover_url, summary, genres, release_date} = request.body;
+
+//   let SQL = 'INSERT INTO games (name, cover_url, summary, genres, release_date) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
+
+//   let values = [name, cover_url, summary, genres, release_date];
+
+//   return client.query(SQL, values)
+//   .then(results => response.redirect('/'))
+//   .catch(err => errorPage(err, response));
+// };
 
 function searchInInternetGameDatabase(request, response) {
   // let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=${request.body.typeOfSearch}`;
 
   let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=category,name,platforms.name,cover.url,genres.name,first_release_date,url,summary`;
-  console.log(request.body.name);
-  console.log(request.body);
-  console.log(request.body.typeOfSearch);
-  console.log('Hello!!');
-  console.log(request.body);
 
   superagent.post(url)
     .set('user-key', process.env.IGDB_API_KEY)
