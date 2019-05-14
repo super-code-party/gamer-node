@@ -57,7 +57,8 @@ function searchInInternetGameDatabase(request, response) {
   console.log(request.body.name);
   console.log(request.body.typeOfSearch);
   console.log('Hello!!');
-  console.log(request.body);
+  console.log('request body',request.body);
+  console.log('API key',process.env.IGDB_API_KEY);
 
   superagent.post(url)
     .set('user-key', process.env.IGDB_API_KEY)
