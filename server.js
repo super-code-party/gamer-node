@@ -39,6 +39,10 @@ app.get('/', (request, response) => {
 
 app.post('/gameSearches/show', searchInInternetGameDatabase);
 
+app.post('/detail', displayGameDetail);
+
+app.get('/error', errorPage);
+
 
 
 function VideoGame(info) {
@@ -95,8 +99,20 @@ function searchInInternetGameDatabase(request, response) {
 
 }
 
+function displayGameDetail(request, response){
+  let values = [request.params.game_id];
+  console.log('values in displayGameDetail', values);
+
+  response.redirect('gameSearches/detail');
+  
+
+}
 
 
 
+// error
+function errorPage(error, response){
+  response.render('pages/error', {error: 'There was an issue. Stop breaking things!'});
+}
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
