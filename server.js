@@ -17,23 +17,56 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('./public'));
 
-// Database Setup
 
+//
+// Space left for methodOverride
+//
+
+// Database Setup
 const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
 client.on('error', err => console.error(err));
 
 
-// For rendering
+// For Server Side Rendering
 app.set('view engine', 'ejs');
 
 
-// app.get('/');
-
-
+// Routes
 app.get('/', (request, response) => {
   response.render('index');
 });
+
+app.post('/gameSearches/show', searchInInternetGameDatabase);
+
+
+
+function VideoGame(info) {
+  console.log('from constructor');
+  this.id = info.id;
+  this.name = info.name;
+}
+
+
+
+
+
+
+function searchInInternetGameDatabase(request, response) {
+  let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=${request.body.typeOfSearch}`;
+  console.log(request.body.name);
+  console.log(request.body.typeOfSearch);
+  console.log('Hello!!');
+  console.log(request.body);
+
+  superagent.post(url)
+    .set('user-key', process.env.IGDB_API_KEY)
+    .set('Accept', 'application/json')
+    .then(response => response.body.map(apiResult => new VideoGame(apiResult)))
+    .then(videoGames => response.render('pages/gamesSearches/show', {listOfVideoGames: videoGames}))
+    .catch(console.error);
+
+}
 
 
 
