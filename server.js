@@ -33,13 +33,12 @@ app.set('view engine', 'ejs');
 
 
 // Routes
-app.get('/', (request, response) => {
-  response.render('index');
-});
+
+app.get('/', getGames);
 
 app.post('/gameSearches/show', searchInInternetGameDatabase);
 
-app.post('/detail', displayGameDetail);
+// app.post('/detail', displayGameDetail);
 
 app.get('/error', errorPage);
 
@@ -116,13 +115,24 @@ function searchInInternetGameDatabase(request, response) {
 
 }
 
-function displayGameDetail(request, response){
-  let values = [request.params.game_id];
-  console.log('values in displayGameDetail', values);
+//Needs work
+// function displayGameDetail(request, response){
+//   let values = [request.params.game_id];
+//   console.log('values in displayGameDetail', values);
 
-  response.redirect('gameSearches/detail');
-  
+//   response.redirect('gameSearches/detail');
+// }
 
+
+function getGames(request, response) {
+  let SQL = 'SELECT * FROM games;';
+
+  return client.query(SQL)
+    .then(result => {
+      console.log(result);
+      response.render('index', {results: result.rows});
+    })
+    .catch(errorPage);
 }
 
 

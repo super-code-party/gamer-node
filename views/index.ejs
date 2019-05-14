@@ -33,6 +33,21 @@
   </section>
 
 
+  <section class="showContainer">
+    <% results.forEach(videoGames => { %>
+      <img src="<%= videoGames.cover_url %>"  alt="">
+      <h2><%= videoGames.name %> </h2>
+      <h2><%= videoGames.genres %></h2>
+   
+    
+    
+    <% }) %>
+
+
+    <% console.log(results) %>
+      <%= results[0].id %>
+  </section>
+
   <!-- Game Layout Partial
   <section>
     <h3>Title</h3>
