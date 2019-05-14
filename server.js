@@ -54,11 +54,6 @@ function VideoGame(info) {
 
 function searchInInternetGameDatabase(request, response) {
   let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=${request.body.typeOfSearch}`;
-  console.log(request.body.name);
-  console.log(request.body.typeOfSearch);
-  console.log('Hello!!');
-  console.log('request body',request.body);
-  console.log('API key',process.env.IGDB_API_KEY);
 
   superagent.post(url)
     .set('user-key', process.env.IGDB_API_KEY)
@@ -68,7 +63,5 @@ function searchInInternetGameDatabase(request, response) {
     .catch(console.error);
 
 }
-
-
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
