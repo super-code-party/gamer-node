@@ -39,10 +39,12 @@ app.get('/', (request, response) => {
 
 app.post('/gameSearches/show', searchInInternetGameDatabase);
 
+app.get('gameSearches/detail', displayGameDetail);
 
+
+// Functions
 
 function VideoGame(info) {
-  console.log('from constructor');
   this.id = info.id;
   this.name = info.name;
   // this.cover_url = info.cover.url;
@@ -56,12 +58,7 @@ function VideoGame(info) {
 }
 
 
-
-
-
-
 function searchInInternetGameDatabase(request, response) {
-  // let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=${request.body.typeOfSearch}`;
 
   let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=category,name,platforms.name,cover.url,genres.name,first_release_date,url,summary`;
   console.log(request.body.name);
@@ -69,8 +66,6 @@ function searchInInternetGameDatabase(request, response) {
   console.log(request.body.typeOfSearch);
   console.log('Hello!!');
   console.log(request.body);
-
-  //${request.body.category},${request.body.platforms.name},${request.body.cover.url},${request.body.genres.name},${request.body.first_release_date},${request.body.url},${request.body.summary}`;
 
   //category,name,platforms.name,cover.url,genres.name,first_release_date
 
@@ -81,6 +76,14 @@ function searchInInternetGameDatabase(request, response) {
     .then(response => response.body.map(apiResult => new VideoGame(apiResult)))
     .then(videoGames => response.render('pages/gamesSearches/show', {listOfVideoGames: videoGames}))
     .catch(console.error);
+
+}
+
+function displayGameDetail(request, response){
+  let values = [request.params.game_id];
+  console.log(values);
+
+  
 
 }
 

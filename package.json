@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/super-code-party/gamers-node#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
