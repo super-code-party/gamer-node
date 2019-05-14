@@ -50,11 +50,8 @@ function VideoGame(info) {
   this.name = info.name;
   this.cover_url = urlCheck(info);
   this.summary = info.summary;
-  // this.platforms = info.platforms.name;
+  this.platforms = checkPlatforms(info) || 'Platform not avialable!';
   this.category = info.category;
-  console.log(info);
-  // console.log(info.genres[0].name);
-  // this.genres = info.genres.name || 'Genre unavailable';
   this.genres = genreCheck(info) || 'Genre unavailable';
   this.release_date = epochConvert(info.first_release_date);
 
@@ -88,7 +85,16 @@ const genreCheck = (info) => {
   }
 };
 
-
+//checks platform yeah
+const checkPlatforms = (info) => {
+  if(info.platforms === undefined || info.platforms === null){
+    return false;
+  }else{
+    return info.platforms.map( (plats) => {
+      return plats.name;
+    });
+  }
+};
 
 
 function searchInInternetGameDatabase(request, response) {
