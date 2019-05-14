@@ -39,17 +39,15 @@ app.get('/', (request, response) => {
 
 app.post('/gameSearches/show', searchInInternetGameDatabase);
 
+app.get('gameSearches/detail', displayGameDetail);
 
+
+// Functions
 
 function VideoGame(info) {
-  console.log('from constructor');
   this.id = info.id;
   this.name = info.name;
 }
-
-
-
-
 
 
 function searchInInternetGameDatabase(request, response) {
@@ -63,5 +61,15 @@ function searchInInternetGameDatabase(request, response) {
     .catch(console.error);
 
 }
+
+function displayGameDetail(request, response){
+  let values = [request.params.game_id];
+  console.log(values);
+
+  
+
+}
+
+
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
