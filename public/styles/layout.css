@@ -1,0 +1,38 @@
+header {
+  height: 10vh;
+  width: 100%;
+  background-color: #506D2F;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header a{
+  width: 20%;
+  height: 100%;
+}
+
+header a img {
+  margin: 10% 0 0 25%;
+  height: 80% ;
+  width: auto;
+}
+
+header i {
+  margin-right: 10%;
+}
+
+header h1 {
+  margin-right:10%;
+
+}
+
+footer {
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  
+  height: 10vh;
+  width: 100%;
+  background-color: #7D5642;
+}
