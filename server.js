@@ -47,16 +47,13 @@ app.get('/error', errorPage);
 function VideoGame(info) {
   this.id = info.id;
   this.name = info.name;
-  this.cover_url = urlCheck(info);
+  this.coverUrl = urlCheck(info);
   this.summary = info.summary;
   this.platforms = checkPlatforms(info) || 'Platform not avialable!';
   this.category = info.category;
   this.genres = genreCheck(info) || 'Genre unavailable';
-  this.release_date = epochConvert(info.first_release_date);
-
-
+  this.releaseDate = epochConvert(info.first_release_date);
 }
-
 
 //Converts image url from //url to https://url
 const urlCheck = (info) => {
@@ -100,11 +97,6 @@ function searchInInternetGameDatabase(request, response) {
   // let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=${request.body.typeOfSearch}`;
 
   let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=category,name,platforms.name,cover.url,genres.name,first_release_date,url,summary`;
-  console.log(request.body.name);
-  console.log(request.body);
-  console.log(request.body.typeOfSearch);
-  console.log('Hello!!');
-  console.log(request.body);
 
   superagent.post(url)
     .set('user-key', process.env.IGDB_API_KEY)
@@ -115,13 +107,6 @@ function searchInInternetGameDatabase(request, response) {
 
 }
 
-//Needs work
-// function displayGameDetail(request, response){
-//   let values = [request.params.game_id];
-//   console.log('values in displayGameDetail', values);
-
-//   response.redirect('gameSearches/detail');
-// }
 
 
 function getGames(request, response) {
