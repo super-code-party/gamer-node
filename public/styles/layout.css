@@ -57,3 +57,12 @@ footer {
   width: auto;
   margin: 4%;
 }
+
+
+/* About Us */
+
+.container{
+  width: 90vh;
+  height: 140vh;
+  flex-flow: wrap;
+}
