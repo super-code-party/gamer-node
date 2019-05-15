@@ -59,7 +59,7 @@ function VideoGame(info) {
 
   this.platforms = checkPlatforms(info) || 'Platform not available!';
   this.genres = genreCheck(info) || 'Genre not available';
-  this.releaseDate = epochConvert(info.first_release_date);
+  this.release_date = epochConvert(info.first_release_date);
   this.rating = parseInt(info.rating) || 'Rating not available';
   this.gameMode = gameModeCheck(info) || 'Game mode not available';
   this.company = companyCheck(info) || 'Company not available';
@@ -124,7 +124,7 @@ const gameModeCheck = (info) => {
 //Checks if company exists and has safeguard for ones that don't
 const companyCheck = (info) => {
   if(info.involved_companies){
-    return info.involved_companies.map((company) => {
+    return info.involved_companies.map(() => {
       return info.involved_companies[0].company.name;
     });
   }else{
