@@ -52,4 +52,5 @@ h1, p{
 .gamer{
   max-width: 70%;
   margin-top: 5%;
+  display: none;
 }
