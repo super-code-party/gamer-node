@@ -20,3 +20,7 @@
   color: #F3EBDD;
   border-radius: 5px;
 }
+
+.hideMe {
+  display: none;
+}
