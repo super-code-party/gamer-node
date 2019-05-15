@@ -35,8 +35,9 @@ app.set('view engine', 'ejs');
 // Routes
 
 app.get('/', getGames);
-
 app.post('/gameSearches/show', searchInInternetGameDatabase);
+app.post('/games/detail', addGame);
+app.get('/games/:game_id', getBookDetails);
 
 // app.post('/detail', displayGameDetail);
 
@@ -94,8 +95,6 @@ const checkPlatforms = (info) => {
 
 
 function searchInInternetGameDatabase(request, response) {
-  // let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=${request.body.typeOfSearch}`;
-
   let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=category,name,platforms.name,cover.url,genres.name,first_release_date,url,summary`;
 
   superagent.post(url)
@@ -104,9 +103,7 @@ function searchInInternetGameDatabase(request, response) {
     .then(response => response.body.map(apiResult => new VideoGame(apiResult)))
     .then(videoGames => response.render('pages/gamesSearches/show', {listOfVideoGames: videoGames}))
     .catch(console.error);
-
 }
-
 
 
 function getGames(request, response) {
@@ -114,10 +111,38 @@ function getGames(request, response) {
 
   return client.query(SQL)
     .then(result => {
-      console.log(result);
       response.render('index', {results: result.rows});
     })
-    .catch(errorPage);
+    .catch(console.error);
+}
+
+
+function addGame(request, response) {
+  let {name, cover_url, genres, release_date, summary} = request.body;
+
+  let SQL = 'INSERT INTO games(name, cover_url, summary, genres, release_date) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
+
+  let values = [name, cover_url, summary, genres, release_date];
+
+  return client.query(SQL, values)
+    .then(result => {
+      response.redirect(`/games/${result.rows[0].id}`);
+    })
+    .catch(console.error);
+}
+
+
+function getBookDetails(request, response) {
+  let SQL = 'SELECT * FROM games WHERE id=$1;';
+  let values = [request.params.game_id];
+  console.log(request.params);
+  console.log('This is values', values);
+  return client.query(SQL, values)
+    .then(result => {
+      console.log('this is result', result);
+      return response.render('pages/gamesSearches/detail', {result: result.rows[0]});
+    })
+    .catch(console.error);
 }
 
 
