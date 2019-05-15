@@ -11,6 +11,7 @@
   text-align: center;
   margin: 0% 0% 2% 0%;
   border-radius: 5px;
+  font-size: 4vw;
 }
 
 .formSearchContainer button{
@@ -18,6 +19,4 @@
   background-color: #2A2922;
   color: #F3EBDD;
   border-radius: 5px;
-  
-
 }
