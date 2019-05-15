@@ -124,7 +124,7 @@ const gameModeCheck = (info) => {
 //Checks if company exists and has safeguard for ones that don't
 const companyCheck = (info) => {
   if(info.involved_companies){
-    return info.involved_companies.map((company) => {
+    return info.involved_companies.map(() => {
       return info.involved_companies[0].company.name;
     });
   }else{
