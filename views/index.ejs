@@ -17,13 +17,13 @@
       </form>
     </section>
 
-    <p>Game Count: <%= results.length %></p>
+    <p>Games in Database: <%= results.length %></p>
     <section class="showContainer">
       <% results.forEach(videoGames => { %>
       <img src="<%= videoGames.cover_url %>"  alt="">
       <h2><%= videoGames.name %> </h2>
       <h2><%= videoGames.genres %></h2>
-      <a href="/games/<%=videoGames.id%>"><button>View Details</button></a> 
+      <a href="/games/<%=videoGames.id%>"><button class="viewButton">View Details</button></a> 
       <% }) %>
     </section>
 
