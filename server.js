@@ -19,8 +19,6 @@ app.use(express.static('./public'));
 
 app.use(methodOverride(function (req, res) {
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-    // look in urlencoded POST bodies and delete it
-    console.log(req.body._method);
     var method = req.body._method;
     delete req.body._method;
     return method;
@@ -42,8 +40,8 @@ app.set('view engine', 'ejs');
 app.get('/', getGames);
 app.post('/gameSearches/show', searchInInternetGameDatabase);
 app.post('/games/detail', addGame);
-app.get('/games/:gameId', getBookDetails);
 app.put('/games/:gameId', updateGame);
+app.get('/games/:gameId', getGameDetails);
 app.delete('/games/:gameId', deleteGame);
 
 
@@ -56,12 +54,12 @@ app.get('/about', aboutUsPage);
 function VideoGame(info) {
   this.id = info.id;
   this.name = info.name;
-  this.coverUrl = urlCheck(info);
+  this.cover_url = urlCheck(info);
   this.summary = info.summary;
   this.platforms = checkPlatforms(info) || 'Platform not avialable!';
   this.category = info.category;
   this.genres = genreCheck(info) || 'Genre unavailable';
-  this.releaseDate = epochConvert(info.first_release_date);
+  this.release_date = epochConvert(info.first_release_date);
 }
 
 //Converts image url from //url to https://url
@@ -126,11 +124,11 @@ function getGames(request, response) {
 
 
 function addGame(request, response) {
-  let {name, cover_url, genres, release_date, summary} = request.body;
+  let {name, genres, release_date, summary, cover_url} = request.body;
 
-  let SQL = 'INSERT INTO games(name, cover_url, summary, genres, release_date) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
+  let SQL = 'INSERT INTO games(name, genres, release_date, summary, cover_url) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
 
-  let values = [name, cover_url, summary, genres, release_date];
+  let values = [name, genres, release_date, summary, cover_url];
 
   return client.query(SQL, values)
     .then(result => {
@@ -140,24 +138,25 @@ function addGame(request, response) {
 }
 
 
-function getBookDetails(request, response) {
+function getGameDetails(request, response) {
   let SQL = 'SELECT * FROM games WHERE id=$1;';
   let values = [request.params.gameId];
   return client.query(SQL, values)
     .then(result => {
-      return response.render('pages/gamesSearches/detail', {result: result.rows[0]});
+      response.render('pages/gamesSearches/detail', {result: result.rows[0]});
     })
-    .catch(console.error);
+    .catch(err => {
+      console.error(err);
+      errorPage(err, response);
+    });
 }
 
 
 // Updating but acting strange
 function updateGame(request, response){
-  let {name, cover_url, genres, release_date, summary} = request.body;
-  let SQL = 'UPDATE games SET name=$1, cover_url=$2, summary=$3, genres=$4, release_date=$5 WHERE id=$6;';
-  let values = [name, cover_url, summary, genres, release_date, request.params.gameId];
-  console.log('in update params', request.params);
-  console.log('in update game', values);
+  let {name, genres, release_date, summary, cover_url} = request.body;
+  let SQL = 'UPDATE games SET name=$1, genres=$2, release_date=$3, summary=$4, cover_url=$5 WHERE id=$6;';
+  let values = [name, genres, release_date, summary, cover_url, request.params.gameId];
 
   client.query(SQL, values)
     .then(response.redirect(`/games/${request.params.gameId}`))
