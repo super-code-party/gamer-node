@@ -86,3 +86,31 @@ footer {
   width: auto;
   margin: 4%;
 }
+
+#flowey{
+    visibility: hidden;
+  }
+
+@media (prefers-color-scheme: dark){
+    body {
+        background-color: #0f1216;
+    }
+    header {
+        background-color: #0c230d;
+    }
+    footer {
+        background-color: #231a0c;
+    }
+    /* header a img{
+        visibility: hidden;
+    } */
+    a #normal{
+        visibility: hidden;
+        display: none;
+    }
+
+    #flowey {
+        visibility: visible;
+        float: left;
+    }
+}

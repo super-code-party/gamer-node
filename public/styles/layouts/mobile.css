@@ -67,3 +67,7 @@ header {
     width: auto;
     margin: 4%;
   }
+
+  #flowey{
+    visibility: hidden;
+  }
