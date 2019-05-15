@@ -59,7 +59,7 @@ function VideoGame(info) {
 
   this.platforms = checkPlatforms(info) || 'Platform not available!';
   this.genres = genreCheck(info) || 'Genre not available';
-  this.releaseDate = epochConvert(info.first_release_date);
+  this.release_date = epochConvert(info.first_release_date);
   this.rating = parseInt(info.rating) || 'Rating not available';
   this.gameMode = gameModeCheck(info) || 'Game mode not available';
   this.company = companyCheck(info) || 'Company not available';
