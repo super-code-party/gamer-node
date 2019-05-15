@@ -1,25 +1,21 @@
-DROP TABLE IF EXISTS publishers;
+-- DROP TABLE IF EXISTS publishers;
 DROP TABLE IF EXISTS games;
 
 
 CREATE TABLE games (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(100),
-  cover_url TEXT, 
-  summary TEXT,
-  genres VARCHAR(100),
-  release_date VARCHAR(100)
+  name VARCHAR,
+  genres VARCHAR,
+  release_date VARCHAR,
+  summary VARCHAR,
+  cover_url VARCHAR
   -- platforms VARCHAR(255),
-
   -- company VARCHAR(255),
-  
-  
   -- isPlayed BOOLEAN,
   -- multiplayer BOOLEAN,
   -- esrb INT,
   -- gameshelves VARCHAR(255),
   -- igdb_id INT,
-  
 );
 
 -- CREATE TABLE publishers (
@@ -29,5 +25,5 @@ CREATE TABLE games (
 --   FOREIGN KEY (games_id) REFERENCES games (id),
 -- );
 
-INSERT INTO games (name, cover_url, summary, genres, release_date)
-VALUES ('Dance Dance Revolution', 'https://www.amazon.com/Dance-Revolution-Playstation/dp/B00005A774', 'dance the nite away baby ;)', 'party', 'Oct 5 1912');
+INSERT INTO games (name, genres, release_date, summary, cover_url)
+VALUES ('Mario and Luigi Paper Jame', 'RPG', 'Oct 5 1991', 'Paper Jamming', 'https://images.igdb.com/igdb/image/upload/t_thumb/idketxgjzfznumiooigw.jpg');
