@@ -17,10 +17,15 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('./public'));
 
-
-//
-// Space left for methodOverride
-//
+app.use(methodOverride(function (req, res) {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    // look in urlencoded POST bodies and delete it
+    console.log(req.body._method);
+    var method = req.body._method;
+    delete req.body._method;
+    return method;
+  }
+}));
 
 // Database Setup
 const client = new pg.Client(process.env.DATABASE_URL);
@@ -37,9 +42,10 @@ app.set('view engine', 'ejs');
 app.get('/', getGames);
 app.post('/gameSearches/show', searchInInternetGameDatabase);
 app.post('/games/detail', addGame);
-app.get('/games/:game_id', getBookDetails);
+app.get('/games/:gameId', getBookDetails);
+app.put('/games/:gameId', updateGame);
+app.delete('/games/:gameId', deleteGame);
 
-// app.post('/detail', displayGameDetail);
 
 app.get('/error', errorPage);
 
@@ -134,17 +140,39 @@ function addGame(request, response) {
 
 function getBookDetails(request, response) {
   let SQL = 'SELECT * FROM games WHERE id=$1;';
-  let values = [request.params.game_id];
-  console.log(request.params);
-  console.log('This is values', values);
+  let values = [request.params.gameId];
   return client.query(SQL, values)
     .then(result => {
-      console.log('this is result', result);
       return response.render('pages/gamesSearches/detail', {result: result.rows[0]});
     })
     .catch(console.error);
 }
 
+
+// Updating but acting strange
+function updateGame(request, response){
+  let {name, cover_url, genres, release_date, summary} = request.body;
+  let SQL = 'UPDATE games SET name=$1, cover_url=$2, summary=$3, genres=$4, release_date=$5 WHERE id=$6;';
+  let values = [name, cover_url, summary, genres, release_date, request.params.gameId];
+  console.log('in update params', request.params);
+  console.log('in update game', values);
+
+  client.query(SQL, values)
+    .then(response.redirect(`/games/${request.params.gameId}`))
+    .catch(console.error);
+}
+
+
+
+function deleteGame(request, response){
+  let SQL = 'DELETE FROM games WHERE id=$1;';
+  let values = [request.params.gameId];
+
+
+  client.query(SQL, values)
+    .then(response.redirect('/'))
+    .catch(console.error);
+}
 
 
 // error
