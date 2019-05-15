@@ -5,12 +5,13 @@
 }
 
 .formSearchContainer input{
-  height: 5vh;
+  height: calc(6vh + 10px);
   background-color: #F3EBDD;
   color: #506D2F;
   text-align: center;
   margin: 0% 0% 2% 0%;
   border-radius: 5px;
+  font-size: 4vw;
 }
 
 .formSearchContainer button{
@@ -19,7 +20,6 @@
   color: #F3EBDD;
   border-radius: 5px;
 }
-
 
 .hideMe {
   display: none;
