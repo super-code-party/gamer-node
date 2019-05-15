@@ -1,3 +1,22 @@
+/* index */
+.showContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5%;
+}
+
+.viewButton {
+  /* padding: 2%; */
+  margin-top: 15%;
+  border-radius: 5px;
+  font-size: 2vh;
+  font-family: 'Righteous', cursive;
+  width: 150%;
+
+}
+
 .formSearchContainer {
   display: flex;
   flex-direction: column;
