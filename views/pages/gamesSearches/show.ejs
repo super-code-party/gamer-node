@@ -13,11 +13,17 @@
 
     <section class="listOfSearchedGames">
       <% listOfVideoGames.forEach(videoGame => { %>  
+
         <img src="<%= videoGame.cover_url; %>"/>
         <p><%=videoGame.name;%></p>
+
         <p><%=videoGame.genres%></p>
         <p>Release Date: <%=videoGame.releaseDate%></p>
         <p><%= videoGame.summary;%></p>
+        <p>Rating out of 100: <%= videoGame.rating;%></p>
+        <p>Platform: <%=videoGame.platforms%></p>
+        <p>Multiplayer: <%=videoGame.gameMode%></p>
+        <p>Company: <%=videoGame.company%></p>
         <button class="selectGame" type="submit">Select This Game</button>
         
         <section class="videoGameDetailsForm hideMe">
