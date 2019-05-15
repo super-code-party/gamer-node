@@ -1,0 +1,88 @@
+header {
+    height: 10vh;
+    width: 100%;
+    background-color: #506D2F;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a{
+  width: 20%;
+  height: 100%;
+}
+  
+header a img {
+  height: 80% ;
+  width: auto;
+  margin-left: 10%;
+  margin-top: 5%;
+}
+  
+header i {
+  margin-right: 15%;
+}
+  
+header h1 {
+  margin-right:10%;
+  font-size: 300%;
+  font-family: 'Righteous', cursive;
+}
+#search {
+  font-size: 400%;
+  font-family: 'Righteous', cursive;
+}
+
+h2{
+  font-size: 2em;
+} 
+  
+footer {
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  height: 10vh;
+  font-size: 300%;
+  width: 100%;
+  background-color: #7D5642;
+}
+  
+.formSearchContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+}
+  
+.formSearchContainer input{
+  height: 5vh;
+  background-color: #F3EBDD;
+  color: #506D2F;
+  text-align: center;
+  margin: 0% 0% 2% 0%;
+  border-radius: 5px;
+}
+  
+.formSearchContainer button{
+  background-color: #2A2922;
+  color: #F3EBDD;
+  border-radius: 5px;
+}
+
+.listOfSearchedGames {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+  
+.individualGame {
+  outline: 2px solid yellow;
+  
+}
+  
+.individualGame img {
+  height: 30vh;
+  width: auto;
+  margin: 4%;
+}
