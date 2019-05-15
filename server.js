@@ -49,6 +49,8 @@ app.delete('/games/:gameId', deleteGame);
 
 app.get('/error', errorPage);
 
+app.get('/about', aboutUsPage);
+
 
 
 function VideoGame(info) {
@@ -178,6 +180,10 @@ function deleteGame(request, response){
 // error
 function errorPage(error, response){
   response.render('pages/error', {error: 'There was an issue. Stop breaking things!'});
+}
+
+function aboutUsPage(request, response){
+  response.render('pages/about', {about: 'Welcome to our page'});
 }
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

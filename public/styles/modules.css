@@ -21,6 +21,32 @@
   border-radius: 5px;
 }
 
+/* About Us */
+
+h1, p{
+  text-align: center;
+}
+
+
+.profileCards{
+  outline: 5px white solid;
+  display: flex;
+}
+
+.profileCards p {
+  max-width: 45%;
+}
+
+.profileCards img{
+  max-height: 130px;
+}
+
+.gamer{
+  max-width: 70%;
+  margin-top: 5%;
+  display: none;
+}
+
 .hideMe {
   display: none;
 }
