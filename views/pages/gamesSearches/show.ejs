@@ -13,8 +13,10 @@
 
     <section class="listOfSearchedGames">
       <% listOfVideoGames.forEach(videoGame => { %>  
-        <img src="<%= videoGame.coverUrl; %>"/>
-        <p>Name: <%=videoGame.name;%></p>
+
+        <img src="<%= videoGame.cover_url; %>"/>
+        <p><%=videoGame.name;%></p>
+
         <p><%=videoGame.genres%></p>
         <p>Release Date: <%=videoGame.releaseDate%></p>
         <p><%= videoGame.summary;%></p>
@@ -26,10 +28,10 @@
         
         <section class="videoGameDetailsForm hideMe">
             <form action="/games/detail" method="POST">
-              <input type="text" name="coverUrl" value="<%= videoGame.coverUrl %>" required>
+              <input type="text" name="cover_url" value="<%= videoGame.cover_url %>" required>
               <input type="text" name="name" value="<%= videoGame.name %>" required>
               <input type="text" name="genres" value="<%= videoGame.genres %>" required>
-              <input type="text" name="releaseDate" value="<%= videoGame.releaseDate %>" required>
+              <input type="text" name="release_date" value="<%= videoGame.release_date %>" required>
               <input type="text" name="summary" value="<%= videoGame.summary %>" required>
               <button type="submit">Add to Database</button>
             </form>
