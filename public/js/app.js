@@ -1,5 +1,7 @@
-$(document).ready(() => {
-  $('section').on('click', () => {
-    $('.front').fadeToggle();
-  });
+'use strict';
+
+$('.selectGame').on('click', function(event) {
+  event.preventDefault();
+  console.log('hello');
+  $('.videoGameDetailsForm').removeClass('hideMe');
 });

@@ -26,12 +26,25 @@
         </select> -->
 
 
-        <button type="submit">Search</button>
+        <button id="search" type="submit">Search</button>
 
       </form>
 
   </section>
 
+    <p><%= results.length %></p>
+  <section class="showContainer">
+    <% results.forEach(videoGames => { %>
+      <img src="<%= videoGames.cover_url %>"  alt="">
+      <h2><%= videoGames.name %> </h2>
+      <h2><%= videoGames.genres %></h2>
+      <a href="/games/<%=videoGames.id%>">View details</a>
+   
+    
+    
+    <% }) %>
+
+  </section>
 
   <!-- Game Layout Partial
   <section>
