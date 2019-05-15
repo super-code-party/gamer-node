@@ -11,6 +11,9 @@ header {
     width: 20%;
     height: 100%;
   }
+  header i {
+    margin-right: 5%;
+  }
   
   header a img {
     height: 80% ;
