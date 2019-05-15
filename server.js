@@ -54,14 +54,18 @@ app.get('/about', aboutUsPage);
 
 
 function VideoGame(info) {
-  this.id = info.id;
+  this.id = info.id;      // Not using but might need for Stretch Goals
   this.name = info.name;
   this.coverUrl = urlCheck(info);
   this.summary = info.summary;
-  this.platforms = checkPlatforms(info) || 'Platform not avialable!';
-  this.category = info.category;
-  this.genres = genreCheck(info) || 'Genre unavailable';
+  this.platforms = checkPlatforms(info) || 'Platform not available!';
+  this.genres = genreCheck(info) || 'Genre not available';
   this.releaseDate = epochConvert(info.first_release_date);
+  this.rating = parseInt(info.rating) || 'Rating not available';
+  this.gameMode = gameModeCheck(info) || 'Game mode not available';
+  this.company = companyCheck(info) || 'Company not available';
+  this.isPlayed = false;
+
 }
 
 //Converts image url from //url to https://url
@@ -69,7 +73,8 @@ const urlCheck = (info) => {
   let image = 'http://1.bp.blogspot.com/-Dz_l-JwZRX8/U1bcqpZ86oI/AAAAAAAAACs/VUouedmQHic/s1600/skyrim_arrow_knee_g_display.jpg';
   if (info.cover === undefined || info.cover === null) {
     return image;
-  }else if(!info.cover.url.includes('https://')) {
+  }else{
+    (!info.cover.url.includes('https://'));
     let newData = info.cover.url.replace('/', 'https:/');
     return newData;
   }
@@ -77,8 +82,13 @@ const urlCheck = (info) => {
 
 //Converts release date from EPOCH to normal time
 const epochConvert = (time) => {
-  let date = new Date(time *1000).toString().slice(4, 15);
-  return date;
+  let noDate = 'TBA';
+  if(time === undefined || time === null){
+    return noDate;
+  }else{
+    let date = new Date(time *1000).toString().slice(4, 15);
+    return date;
+  }
 };
 
 //Checks if genres exists and has safeguard for ones that don't
@@ -102,8 +112,42 @@ const checkPlatforms = (info) => {
 };
 
 
+//Checks if game mode exists and has safeguard for ones that don't
+const gameModeCheck = (info) => {
+  if(info.game_modes === undefined || info.game_modes === null){
+    return false;
+  }else{
+    return info.game_modes.map( (modes) => {
+      return modes.name;
+    });
+  }
+};
+
+//Checks if company exists and has safeguard for ones that don't
+const companyCheck = (info) => {
+  if(info.involved_companies){
+    return info.involved_companies.map((company) => {
+      return info.involved_companies[0].company.name;
+    });
+  }else{
+    return false;
+  }
+};
+
+
+//   if(info.involved_companies === undefined || info.involved_companies === null){
+//     return false;
+//   }else{
+//     return info.involved_companies.map((company) => {
+//       console.log(info.involved_companies.company.name);
+//       return company.name;
+//     });
+//   }
+// };
+
+
 function searchInInternetGameDatabase(request, response) {
-  let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=category,name,platforms.name,cover.url,genres.name,first_release_date,url,summary`;
+  let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=category,name,platforms.name,cover.url,genres.name,first_release_date,url,summary,rating,game_modes.name,involved_companies.company.name`;
 
   superagent.post(url)
     .set('user-key', process.env.IGDB_API_KEY)
