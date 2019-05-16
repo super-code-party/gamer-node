@@ -68,6 +68,7 @@ header {
     margin: 4%;
   }
 
-  #flowey{
-    visibility: hidden;
+  #evil {
+    outline: 2px solid yellow;
+    display:none;
   }
