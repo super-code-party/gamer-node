@@ -34,6 +34,15 @@ header h1 {
   background-color: #7D5646;
 }
 
+.poison {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  font-family: 'Righteous', cursive;
+  font-size: 220%;
+}
+
 .gameCounter{
   font-size: 200%
 }
@@ -46,7 +55,7 @@ footer {
   display: flex;
   justify-content: space-around;
   height: 10vh;
-  font-size: 275%;
+  font-size: 200%;
   
 }
   

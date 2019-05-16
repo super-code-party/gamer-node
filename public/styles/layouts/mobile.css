@@ -43,7 +43,7 @@ h2{
 footer {
   display: flex;
   justify-content: space-around;
-  font-size: 100%;
+  font-size: 120%;
   height: 10vh;
   
 }
@@ -68,3 +68,17 @@ footer {
   margin: 4%;
 }
 
+.poison {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  font-family: 'Righteous', cursive;
+  font-size: 150%;
+}
+
+#poisonImg{
+  width: 100%;
+  height: auto;
+  
+}
