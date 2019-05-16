@@ -21,8 +21,8 @@
         <input type="text" name="cover_url" value="<%=result.cover_url%>" required>
         <input type="text" name="platforms" placeholder="platform" value="<%= result.platforms %>" required>
         <input type="text" name="company" placeholder="company" value="<%= result.company %>" required>
-        <input type="text" name="gameMode" placeholder="multiplayer" value="<%= result.gamemode %>" required>
-        <input id="checkBox" type="checkbox" name="isPlayed" value="true">Is Played?<br>
+        <input type="text" name="game_mode" placeholder="multiplayer" value="<%= result.game_mode %>" required>
+        <input id="checkBox" type="checkbox" name="is_played" value="true">Is Played?<br>
         <button type="submit">Update this Game</button>
       </form>
     </section>
@@ -39,7 +39,7 @@
       <h2>Release Date: <%= result.release_date%></h2>
       <h2>Company :<%= result.company%></h2>
       <h2>Platform: <%= result.platforms%></h2>
-      <h2>Multiplayer: <%= result.gamemode%></h2> 
+      <h2>Multiplayer: <%= result.game_mode%></h2> 
       <p>Summary: <%= result.summary%></p>
       <h2>Played: <%= result.isplayed%></h2> 
       <!-- <button><a href="/">Main Menu</a></button> -->

@@ -61,9 +61,9 @@ function VideoGame(info) {
   this.genres = genreCheck(info) || 'Genre not available';
   this.release_date = epochConvert(info.first_release_date);
   this.rating = parseInt(info.rating) || 'Rating not available';
-  this.gameMode = gameModeCheck(info) || 'Game mode not available';
+  this.game_mode = gameModeCheck(info) || 'Game mode not available';
   this.company = companyCheck(info) || 'Company not available';
-  this.isPlayed = false;
+  this.is_played = false;
 }
 
 //Converts image url from //url to https://url
@@ -170,7 +170,7 @@ function getGames(request, response) {
 
 
 function addGame(request, response) {
-  let {name, genres, release_date, summary, cover_url, platforms, rating, gameMode, company, isPlayed} = request.body;
+  let {name, genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played} = request.body;
   // let SQL = 'INSERT INTO games(name, genres, release_date, summary, cover_url) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
   // let values = [name, genres, release_date, summary, cover_url];
 
@@ -180,9 +180,11 @@ function addGame(request, response) {
 
   return client.query(SQL, values)
     .then( () => {
-      let SQLinner = 'INSERT INTO games (name, genres_id, release_date, summary, cover_url, platforms, rating, gameMode, company, isPlayed) VALUES ($1, (SELECT genres.id FROM genres WHERE genres.name=$2), $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id;';
+      let subQuery = '(SELECT genres.id FROM genres WHERE genres.name=$2)';
+      let SQLinner = `INSERT INTO games (name, genres_id, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played) VALUES ($1, ${subQuery}, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id;`;
+
       console.log('in second query');
-      let valuesInner = [name, genres, release_date, summary, cover_url, platforms, rating, gameMode, company, isPlayed];
+      let valuesInner = [name, genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played];
 
       return client.query(SQLinner, valuesInner)
         .then(result => {
@@ -212,9 +214,12 @@ function getGameDetails(request, response) {
 
 // Updating but acting strange
 function updateGame(request, response){
-  let {name, genres, release_date, summary, cover_url, platforms, rating, gameMode, company, isPlayed} = request.body;
-  let SQL = 'UPDATE games SET name=$1, genres_id=(SELECT genres.id FROM genres WHERE genres.name=$2), release_date=$3, summary=$4, cover_url=$5, platforms=$6, rating=$7, gameMode=$8, company=$9, isPlayed=$10 WHERE id=$11;';
-  let values = [name, genres, release_date, summary, cover_url, platforms, rating, gameMode, company, isPlayed, request.params.gameId];
+  let { name, genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played } = request.body;
+
+  let subQuery = '(SELECT genres.id FROM genres WHERE genres.name=$2)';
+  let SQL = `UPDATE games SET name=$1, genres_id=${subQuery}, release_date=$3, summary=$4, cover_url=$5, platforms=$6, rating=$7, game_mode=$8, company=$9, is_played=$10 WHERE id=$11;`;
+
+  let values = [name, genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played, request.params.gameId];
 
   client.query(SQL, values)
     .then(response.redirect(`/games/${request.params.gameId}`))
