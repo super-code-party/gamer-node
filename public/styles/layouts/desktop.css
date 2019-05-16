@@ -146,3 +146,12 @@ footer {
   font-family: 'Righteous', cursive;
   font-size: 200%;
 }
+
+.poison{
+  display: flex;
+  align-items: center;
+}
+
+#poisonImg{
+  max-width: 425px;
+}
