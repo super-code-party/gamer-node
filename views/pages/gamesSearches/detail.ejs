@@ -9,33 +9,57 @@
     <header>
           <%-include('../partials/header')%> 
     </header>
+    <section class="updateForm">
+      <img src="<%=result.cover_url%>" alt="game corver art">
+      <form action="<%=`/games/${result.id}`%>" method="post">
+        <input type="hidden" name="_method" value="put">
+        <input class="hideMe" type="text" name="name" placeholder="title" value="<%=result.name%>" required>  
+        <input class="hideMe" type="text" name="genres" placeholder="genre" value="<%=result.genres%>" required>  
+        <input class="hideMe" type="text" name="release_date" placeholder="release date" value="<%=result.release_date%>" required>
+        <input class="hideMe" type="text" name="summary" placeholder="summary" value="<%=result.summary%>" required>
+        <input class="hideMe" type="text" name="cover_url" value="<%=result.cover_url%>" required>
+        <input class="hideMe" type="text" name="platforms" placeholder="platform" value="<%= result.platforms %>" required>
+        <input class="hideMe" type="text" name="company" placeholder="company" value="<%= result.company %>" required>
+        <input class="hideMe" type="text" name="rating" placeholder="rating" value="<%= result.rating %>" required>
+        <input class="hideMe" type="text" name="game_mode" placeholder="multiplayer" value="<%= result.game_mode %>" required>
+        
+        <p>Played?</p>
+        <input id="checkBox" type="checkbox" name="is_played" value="true"<%= (result.is_played) ?  "checked" : " "; %>
+><br><br><br>
+
+        
+       
+        <button type="submit">Update this Game</button>
+      </form>
+    </section>
     
-    <img src="<%=result.cover_url%>" alt="">
-    <form action="<%=`/games/${result.id}`%>" method="post">
-    <input type="hidden" name="_method" value="put">
-    <input type="text" name="name" value="<%=result.name%>" required>  
-    <input type="text" name="genres" value="<%=result.genres%>" required>  
-    <input type="text" name="release_date" value="<%=result.release_date%>" required>
-    <input type="text" name="summary" value="<%=result.summary%>" required>
-    <input type="text" name="cover_url" value="<%=result.cover_url%>" required>
-      <button type="submit">Update this task</button>
-    </form>
-
-    <form action="<%=`/games/${result.id}`%>" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <button type="submit">Delete game</button>
-    </form>
+    <section class=deleteForm>
+      <form action="<%=`/games/${result.id}`%>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit">Delete game</button>
+      </form>
+    </section>  
 
 
-
-    <h2><%=result.name%></h2>
-    <h2><%= result.genres%></h2>
-    <p><%= result.summary%></p>
-    <button><a href="/">Main Menu</a></button>
-
+    <section class="detail">
+      <h2>Title: <%=result.name%></h2><br>
+      <h2>Release Date: <%= result.release_date%></h2><br>
+      <h2>Company: <%= result.company%></h2><br>
+      <h2>Rating: <%= result.rating%></h2><br>
+      <h2>Platform: <%= result.platforms%></h2><br>
+      <h2>Genre: <%=result.genres%></h2><br>
+      <h2>Multiplayer: <%= result.game_mode%></h2><br> 
+      <p>Summary: <%= result.summary%></p><br>
+      <h2>Played: <%= result.is_played%></h2><br> 
+    </section>
   <footer>
       <%-include('../partials/footer')%>
     </footer>
 </main>
+ <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="/js/app.js"></script>
 </body>
 </html>

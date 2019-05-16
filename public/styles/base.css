@@ -10,7 +10,20 @@ body {
   padding-bottom: 11vh;
 }
 
-h1, h2, p {
+h1, h2, h3, h4, p, form {
   color: #F3EBDD;
 }
 
+footer{
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  background-color: #506D2F;
+  font-family: 'Righteous', cursive;
+  width: 100%;
+}
+
+.gameCounter{
+  margin: 3%;
+  font-family: 'Righteous', cursive;
+}

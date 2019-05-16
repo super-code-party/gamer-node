@@ -1,69 +1,178 @@
 header {
-    height: 10vh;
-    width: 100%;
-    background-color: #506D2F;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  display: flex;
+  height: 12vh;
+  width: 100%;
+  background-color: #506D2F;
+  /* justify-content: center; */
+  align-items: center;
+  margin-bottom: 2%;
+}
   
-  header a{
-    width: 20%;
-    height: 100%;
-  }
-  header i {
-    margin-right: 5%;
-  }
-  
-  header a img {
-    height: 80% ;
-    width: auto;
-    margin-left: 10%;
-    margin-top: 5%;
-  }
-  
-  header h1 {
-    margin-right:10%;
-    font-size: 300%;
+header a{
+  width: 20%;
+  height: 100%;
+}
+
+header a img {
+  width: 70%;
+  height: auto;
+  margin-left: 20%;
+  margin-top: 5%;
+}
+
+header h1 {
+  flex-grow: .75;
+  align-self: center;
+  margin-right:10%;
+  font-size: 200%;
+  font-family: 'Righteous', cursive;
+  margin: 2%;
+} 
+
+#search {
+    font-size: 1.5em;
     font-family: 'Righteous', cursive;
-  } 
-  #search {
-      font-size: 1.5em;
-      font-family: 'Righteous', cursive;
-  }
+    background-color: #7D5646;
+}
 
-  h2{
-      font-size: 2em;
-  }
-  
-  footer {
-    position:fixed;
-    left:0px;
-    bottom:0px;
-    font-size: 150%;
-    height: 10vh;
-    width: 100%;
-    background-color: #7D5642;
-  }
+h2{
+    font-size: 2em;
+}
 
+footer {
+  display: flex;
+  justify-content: space-around;
+  font-size: 150%;
+  height: 10vh;
+  align-items: center;
+  text-decoration: none;
+}
+
+.showContainer {
+  font-family: 'Righteous', cursive;
+  color: #F3EBDD;
+  text-align: center;
+  display:flex;
+}
+
+.viewButton {
+  margin-bottom: 30%; 
+}
 
 .listOfSearchedGames {
-    margin-top: 5%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  margin: 5%;
+  margin-bottom: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: 'Righteous', cursive;
+}
+
+.individualGame {
+  outline: 2px solid yellow;
+}
+
+.individualGame img {
+  height: 30vh;
+  width: auto;
+  margin: 4%;
+}
+
+.poison {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  font-family: 'Righteous', cursive;
+  font-size: 150%;
+  align-items: center;
+  align-content: center;
+}
+
+#poisonImg{
+  max-width: 375px;
+}
+
+.poison p {
+  color:#7B40C4;
+}
+
+
+.detail{
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  font-family: 'Righteous', cursive;
+  align-items: center;
+  margin: 3%;
+}
+
+.detail h2{
+  /* align-content: center; */
+  justify-content: center;
+  font-size: 120%;
   
+}
+
+.updateForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2%;
   
-  }
-  
-  .individualGame {
-    outline: 2px solid yellow;
-  
-  }
-  
-  .individualGame img {
-    height: 30vh;
-    width: auto;
-    margin: 4%;
-  }
+}
+ .updateForm img{
+   margin: 1%;
+ }
+
+/* .updatForm input[type=text], textarea{
+  background-color: #F3EBDD;
+  width: 120%;
+} */
+
+.updateForm button {
+  background-color: #7D5646;
+  font-family: 'Righteous', cursive;
+}
+
+.deleteForm{
+  background-color: #F3EBDD;
+  margin: 1%;
+  text-align: center;
+  font-family: 'Righteous', cursive;
+}
+
+.deleteForm button{
+  font-family: 'Righteous', cursive;
+  font-size: 100%;
+}
+
+
+/* searches/show */
+
+.listOfSearchedGames img {
+  max-width: 90px;
+  height: auto;
+  margin: 1%;
+}
+
+.listOfSearchedGames button {
+  border-radius: 5px;
+  background-color: #506D2F;
+  font-size: 100%;
+  margin: 2%;
+  padding: 1%;
+}
+
+.listOfSearchedGames h2{
+  margin: 1%;
+}
+
+.selectGame {
+  font-family: 'Righteous', cursive;
+}
+
+.addToDatabase{
+  font-family: 'Righteous', cursive;
+}
