@@ -13,10 +13,13 @@ header a{
 }
   
 header a img {
-  height: 80% ;
+  height: 70% ;
   width: auto;
   margin-left: 20%;
-  margin-top: 10%;
+  margin-top: 5%;
+}
+.viewButton {
+  margin-bottom: 30%; 
 }
   
 header h1 {

@@ -49,6 +49,10 @@ header h1 {
   font-size: 200%
 }
 
+.viewButton {
+  margin-bottom: 30%; 
+}
+
 h2{
   font-size: 2em;
 } 
@@ -90,11 +94,6 @@ footer {
   align-items: center;
   text-align: center;
   font-family: 'Righteous', cursive;
-}
-  
-.individualGame {
-  /* outline: 2px solid yellow; */
-  
 }
   
 .individualGame img {
