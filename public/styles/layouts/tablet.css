@@ -1,10 +1,10 @@
 header {
-    height: 10vh;
-    width: 100%;
-    background-color: #506D2F;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  height: 12vh;
+  width: 100%;
+  background-color: #506D2F;
+  align-items: center;
+  margin-bottom: 2%;
 }
 
 header a{
@@ -15,19 +15,19 @@ header a{
 header a img {
   height: 80% ;
   width: auto;
-  margin-left: 10%;
-  margin-top: 5%;
-}
-  
-header i {
-  margin-right: 15%;
+  margin-left: 20%;
+  margin-top: 10%;
 }
   
 header h1 {
-  margin-right:10%;
+  flex-grow: .75;
+  align-self: center;
+  /* margin-right:10%; */
   font-size: 300%;
   font-family: 'Righteous', cursive;
+  margin: 2%;
 }
+
 #search {
   font-size: 400%;
   font-family: 'Righteous', cursive;

@@ -1,9 +1,9 @@
 header {
-  height: 15vh;
+  display: flex;
+  height: 12vh;
   width: 100%;
   background-color: #506D2F;
-  display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   margin-bottom: 2%;
 }
@@ -17,13 +17,15 @@ header a{
 } */
 
 header a img {
-  height: 75% ;
-  width: auto;
-  margin-left: 10%;
+  width: 80%;
+  height: auto;
+  margin-left: 20%;
   margin-top: 10%;  
 }
 
 header h1 {
+  flex-grow: .75;
+  align-self: center;
   margin-right:10%;
   font-size: 200%;
   font-family: 'Righteous', cursive;
@@ -48,7 +50,6 @@ footer {
   align-items: center;
   
 }
-
 
 .listOfSearchedGames {
   margin-top: 5%;
