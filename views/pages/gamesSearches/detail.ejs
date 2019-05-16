@@ -18,6 +18,9 @@
         <input type="text" name="release_date" value="<%=result.release_date%>" required>
         <input type="text" name="summary" value="<%=result.summary%>" required>
         <input type="text" name="cover_url" value="<%=result.cover_url%>" required>
+        <input type="text" name="platforms" value="<%= result.platforms %>" required>
+        <input type="text" name="company" value="<%= result.company %>" required>
+        <input type="text" name="game_mode" value="<%= result.game_mode %>" required>
         <button type="submit">Update this Game</button>
       </form>
     </section>
@@ -32,6 +35,10 @@
     <section class="detail">
       <h2><%=result.name%></h2>
       <h2><%= result.genres%></h2>
+      <h2><%= result.release_date%></h2>
+      <h2><%= result.company%></h2>
+      <%= console.log(result.company)%>
+       <h2><%= result.game_mode%></h2>
       <p><%= result.summary%></p>
       <!-- <button><a href="/">Main Menu</a></button> -->
     </section>
