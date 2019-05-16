@@ -49,6 +49,9 @@ header h1 {
 #poisonImg{
   max-width: 425px;
 }
+.poison p {
+  color:#7B40C4;
+}
 
 .gameCounter{
   font-size: 150%
