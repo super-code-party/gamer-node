@@ -132,18 +132,6 @@ const companyCheck = (info) => {
   }
 };
 
-
-//   if(info.involved_companies === undefined || info.involved_companies === null){
-//     return false;
-//   }else{
-//     return info.involved_companies.map((company) => {
-//       console.log(info.involved_companies.company.name);
-//       return company.name;
-//     });
-//   }
-// };
-
-
 function searchInInternetGameDatabase(request, response) {
   let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=category,name,platforms.name,cover.url,genres.name,first_release_date,url,summary,rating,game_modes.name,involved_companies.company.name`;
 
@@ -183,30 +171,31 @@ function addGame(request, response) {
       let subQuery = '(SELECT genres.id FROM genres WHERE genres.name=$2)';
       let SQLinner = `INSERT INTO games (name, genres_id, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played) VALUES ($1, ${subQuery}, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id;`;
 
-      console.log('in second query');
       let valuesInner = [name, genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played];
 
       return client.query(SQLinner, valuesInner)
         .then(result => {
-          console.log('in second with request', request.body);
           response.redirect(`/games/${result.rows[0].id}`);
         });
     })
-    .catch(console.error);
+    .catch(err => {
+      console.error(err);
+      errorPage(err, response);
+    });
 
 }
 
 
 function getGameDetails(request, response) {
-  let SQL = 'SELECT * FROM games WHERE id=$1;';
+  let SQL = 'SELECT games.name, games.id, genres.name AS genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played  FROM games,genres WHERE games.genres_id=genres.id AND games.id=$1;';
   let values = [request.params.gameId];
+  console.log(values);
   return client.query(SQL, values)
     .then(result => {
-      console.log('In getGameDetails', result.rows[0]);
-      response.render('pages/gamesSearches/detail', {result: result.rows[0]});
+      response.render('pages/gamesSearches/detail',{result: result.rows[0]});
     })
     .catch(err => {
-      console.error(err);
+      // console.error(err);
       errorPage(err, response);
     });
 }
@@ -216,17 +205,24 @@ function getGameDetails(request, response) {
 function updateGame(request, response){
   let { name, genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played } = request.body;
 
-  let subQuery = '(SELECT genres.id FROM genres WHERE genres.name=$2)';
-  let SQL = `UPDATE games SET name=$1, genres_id=${subQuery}, release_date=$3, summary=$4, cover_url=$5, platforms=$6, rating=$7, game_mode=$8, company=$9, is_played=$10 WHERE id=$11;`;
+  // console.log('in updateGame', request.body);
 
-  let values = [name, genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played, request.params.gameId];
+  let SQL = 'INSERT INTO genres (name) SELECT $1 WHERE NOT EXISTS (SELECT name FROM genres WHERE name = $2);';
+  let values = [genres, genres];
 
-  client.query(SQL, values)
-    .then(response.redirect(`/games/${request.params.gameId}`))
+  return client.query(SQL, values)
+    .then( () => {
+      let subQuery = '(SELECT genres.id FROM genres WHERE genres.name=$2)';
+      let SQLinner = `UPDATE games SET name=$1, genres_id=${subQuery}, release_date=$3, summary=$4, cover_url=$5, platforms=$6, rating=$7, game_mode=$8, company=$9, is_played=$10 WHERE id=$11;`;
+    
+      let valuesinner = [name, genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played, request.params.gameId];
+
+      return client.query(SQLinner, valuesinner)
+        .then(response.redirect(`/games/${request.params.gameId}`))
+        .catch(console.error);
+    })
     .catch(console.error);
 }
-
-
 
 function deleteGame(request, response){
   let SQL = 'DELETE FROM games WHERE id=$1;';
@@ -241,7 +237,9 @@ function deleteGame(request, response){
 
 // error
 function errorPage(error, response){
-  response.render('pages/error', {error: 'There was an issue. Stop breaking things!'});
+  // response.render('pages/error', {error: 'There was an issue. Stop breaking things!'});
+  response.render('pages/error', {error: error});
+
 }
 
 function aboutUsPage(request, response){
