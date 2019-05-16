@@ -128,6 +128,7 @@ footer {
   text-align: center;
   font-family: 'Righteous', cursive;
 }
+
 .deleteForm button{
   font-family: 'Righteous', cursive;
   font-size: 100%;
@@ -150,5 +151,9 @@ footer {
 }
 
 .selectGame {
+  font-family: 'Righteous', cursive;
+}
+
+.addToDatabase{
   font-family: 'Righteous', cursive;
 }
