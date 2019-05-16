@@ -40,6 +40,12 @@
   border-radius: 5px;
 }
 
+/* Results page */
+/* Show-hide button */
+.hideMe{
+  display: none;
+}
+
 /* About Us */
 
 h1, p{
