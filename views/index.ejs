@@ -16,8 +16,9 @@
         <button id="search" type="submit">Search</button>
       </form>
     </section>
-
-    <p>Games in Database: <%= results.length %></p>
+    <section class="gameCounter">
+      <p>Games in Storage: <%= results.length %></p>
+    </section>  
     <section class="showContainer">
       <% results.forEach(videoGames => { %>
       <img src="<%= videoGames.cover_url %>"  alt="">

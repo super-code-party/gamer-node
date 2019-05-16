@@ -31,6 +31,12 @@ header h1 {
 #search {
   font-size: 400%;
   font-family: 'Righteous', cursive;
+  background-color: #7D5646;
+  
+}
+
+.gameCounter{
+  font-size: 150%
 }
 
 h2{

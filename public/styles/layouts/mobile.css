@@ -32,6 +32,8 @@ header h1 {
 
 #search {
     font-size: 1.5em;
+    font-family: 'Righteous', cursive;
+    background-color: #7D5646;
 }
 
 h2{
@@ -65,3 +67,4 @@ footer {
   width: auto;
   margin: 4%;
 }
+

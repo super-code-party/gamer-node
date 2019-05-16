@@ -15,9 +15,6 @@ h1, h2, p {
 }
 
 footer{
-  display: flex;
-  align-items: baseline;
-  align-content: center;
   position:fixed;
   left:0px;
   bottom:0px;
@@ -26,7 +23,7 @@ footer{
   width: 100%;
 }
 
-#search {
-  background-color: Bark #7D5646;
+.gameCounter{
+  margin: 3%;
   font-family: 'Righteous', cursive;
 }
