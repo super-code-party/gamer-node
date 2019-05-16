@@ -94,6 +94,10 @@ h1{
 .gamer {
   text-align: center;
   width:50vw;
+
+.hideMe {
+  display: none;
+
 }
 
 .gamer img {
@@ -131,7 +135,6 @@ h1{
 .front{
   position: absolute;
   backface-visibility: hidden;
-  
   
 }
 
