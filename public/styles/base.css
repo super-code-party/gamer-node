@@ -10,7 +10,7 @@ body {
   padding-bottom: 11vh;
 }
 
-h1, h2, h3, h4, p, form {
+h1, h2, h3, h4, p, form, a {
   color: #F3EBDD;
 }
 

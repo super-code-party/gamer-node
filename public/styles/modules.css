@@ -8,11 +8,18 @@
 }
 
 .viewButton {
-  /* padding: 2%; */
   margin-top: 15%;
   border-radius: 5px;
   font-size: 2vh;
   font-family: 'Righteous', cursive;
+}
+
+button{
+  background-color: gray;
+}
+
+form{
+  background-color: #2A2922;
 }
 
 .formSearchContainer {
@@ -40,6 +47,15 @@
 
 /* Results page */
 /* Show-hide button */
+.listOfSearchedGames h1, h2{
+  font-size: 8vw;
+}
+
+.listOfSearchedGames h4{
+  font-size: 5vw;
+}
+
+
 .hideMe{
   display: none;
 }
@@ -47,7 +63,7 @@
 
 /* Details Page */
 .detail h2{
-  font-size: 5vw;
+  font-size: 4vw;
 }
 
 .detail p{
@@ -56,15 +72,21 @@
 }
 
 .updateForm p{
-  font-size: 4vw;
+  font-size: 10vw;
+  margin-left: 25%
+}
+
+.updateForm button{
+  font-size: 200%;
 }
 
 .checkBox{
   color: #F3EBDD;
   font-size: 3vw;
-  
+}
 
-
+.updateForm input{
+  margin-left: 45%;
 }
 
 /* About Us */
@@ -101,6 +123,24 @@ h1{
   height: 90%;
   margin-left: 5%;
 }
+
+.memberCard h2{
+  font-weight: bold;
+}
+
+.memberCard a{
+  margin-left: 10%;
+}
+
+.memberCard p{
+  font-size: 5vw;
+}
+
+.profileCards span{
+  text-decoration: underline;
+  font-size: 5vw;
+}
+
 .front{
   word-wrap:break-word;
   width:50vw;
@@ -132,6 +172,12 @@ h1{
   background-color: #F3EBDD;
   margin: 1%;
   text-align: center;
+  font-size: 200%;
+}
+
+/* Footer */
+.fab{
+  font-size: 220%;
 }
 
 /*Flip animations*/
