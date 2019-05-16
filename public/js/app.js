@@ -1,5 +1,6 @@
 'use strict';
 
+//Show/Hide form on show.ejs
 $('.selectGame').on('click', function(event) {
   event.preventDefault();
 
@@ -11,3 +12,6 @@ $('.selectGame').on('click', function(event) {
     $(event.target).siblings('form').addClass('hideMe');
   }
 });
+
+
+

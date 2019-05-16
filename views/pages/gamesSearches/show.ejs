@@ -15,23 +15,24 @@
       <% listOfVideoGames.forEach(videoGame => { %>  
         <section>
           <img src="<%= videoGame.cover_url; %>"/>
-          <h2><%=videoGame.name;%></h3>
-          <p><%= videoGame.summary;%></p>
+          <h1><b>Title:</b> <%=videoGame.name;%></h1>
+          <h2><b>Genre:</b> <%= videoGame.genres;%></h2>
+          <h4><b>Rating:</b> <%= videoGame.rating;%></h4>
           <button class="selectGame" type="submit">Select This Game</button>
-        
-          <form class="hideMe" action="/games/detail" method="POST">
-            <input type="text" name="cover_url" value="<%= videoGame.cover_url %>" required>
-            <input type="text" name="name" value="<%= videoGame.name %>" required>
-            <input type="text" name="genres" value="<%= videoGame.genres %>" required>
-            <input type="text" name="release_date" value="<%= videoGame.release_date %>" required>
-            <input type="text" name="summary" value="<%= videoGame.summary %>" required>
-            <input type="text" name="summary" value="<%= videoGame.platforms %>" required>
-            <input type="text" name="summary" value="<%= videoGame.company %>" required>
-            <input type="text" name="summary" value="<%= videoGame.game_mode %>" required>
-            <input type="text" name="summary" value="<%= videoGame.rating %>" required>
-
-            <button class="addToDatabase" type="submit">Add to Database</button>
-          </form>
+            
+            <form class="hideMe" action="/games/detail" method="POST">
+              <input class="hideMe" type="text" name="cover_url" value="<%= videoGame.cover_url %>" required>
+              <input class="hideMe" type="text" name="name" placeholder="title" value="<%= videoGame.name %>" required>
+              <input class="hideMe" type="text" name="genres" placeholder="genres" value="<%= videoGame.genres %>" required>
+              <input class="hideMe" type="text" name="release_date" placeholder="release date" value="<%= videoGame.release_date %>" required>
+              <input class="hideMe" type="text" name="summary" placeholder="summary" value="<%= videoGame.summary %>" required>
+              <input type="text" name="platforms" placeholder="platforms" value="<%= videoGame.platforms %>" required disabled>
+              <input type="text" name="company" placeholder="company" value="<%= videoGame.company %>" required disabled>
+              <input class="hideMe" type="text" name="game_mode" placeholder="multiplayer" value="<%= videoGame.game_mode %>" required>
+              <input class="hideMe" type="text" name="rating" placeholder="rating" value="<%= videoGame.rating %>" required>
+               <input id="checkBox" type="checkbox" name="is_played" value="true">Played?<br>
+              <button  type="submit">Add to Database</button>
+            </form>
         </section>
       <% }) %>
     </section>

@@ -61,9 +61,9 @@ function VideoGame(info) {
   this.genres = genreCheck(info) || 'Genre not available';
   this.release_date = epochConvert(info.first_release_date);
   this.rating = parseInt(info.rating) || 'Rating not available';
-  this.gameMode = gameModeCheck(info) || 'Game mode not available';
+  this.game_mode = gameModeCheck(info) || 'Game mode not available';
   this.company = companyCheck(info) || 'Company not available';
-  this.isPlayed = false;
+  this.is_played = false;
 }
 
 //Converts image url from //url to https://url
@@ -132,18 +132,6 @@ const companyCheck = (info) => {
   }
 };
 
-
-//   if(info.involved_companies === undefined || info.involved_companies === null){
-//     return false;
-//   }else{
-//     return info.involved_companies.map((company) => {
-//       console.log(info.involved_companies.company.name);
-//       return company.name;
-//     });
-//   }
-// };
-
-
 function searchInInternetGameDatabase(request, response) {
   let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=category,name,platforms.name,cover.url,genres.name,first_release_date,url,summary,rating,game_modes.name,involved_companies.company.name`;
 
@@ -170,9 +158,8 @@ function getGames(request, response) {
 
 
 function addGame(request, response) {
-  let {name, genres, release_date, summary, cover_url} = request.body;
-  // let SQL = 'INSERT INTO games(name, genres, release_date, summary, cover_url) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
-  // let values = [name, genres, release_date, summary, cover_url];
+  let {name, genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played} = request.body;
+ 
 
   let SQL = 'INSERT INTO genres (name) SELECT $1 WHERE NOT EXISTS (SELECT name FROM genres WHERE name = $2);';
   let values = [genres, genres];
@@ -180,28 +167,37 @@ function addGame(request, response) {
 
   return client.query(SQL, values)
     .then( () => {
-      let SQLinner = 'INSERT INTO games (name, genres_id, release_date, summary, cover_url) VALUES ($1, (SELECT genres.id FROM genres WHERE genres.name=$2), $3, $4, $5) RETURNING id;';
-      console.log('in second query');
-      let valuesInner = [name, genres, release_date, summary, cover_url];
+      let subQuery = '(SELECT genres.id FROM genres WHERE genres.name=$2)';
+      let SQLinner = `INSERT INTO games (name, genres_id, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played) VALUES ($1, ${subQuery}, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id;`;
+      if(is_played === undefined) is_played = false;
+      console.log('In addGame Function', is_played);
+
+      let valuesInner = [name, genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played];
+
 
       return client.query(SQLinner, valuesInner)
         .then(result => {
           response.redirect(`/games/${result.rows[0].id}`);
         });
     })
-    .catch(console.error);
+    .catch(err => {
+      console.error(err);
+      errorPage(err, response);
+    });
+
 }
 
 
 function getGameDetails(request, response) {
-  let SQL = 'SELECT * FROM games WHERE id=$1;';
+  let SQL = 'SELECT games.name, games.id, genres.name AS genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played  FROM games,genres WHERE games.genres_id=genres.id AND games.id=$1;';
   let values = [request.params.gameId];
+
   return client.query(SQL, values)
     .then(result => {
-      response.render('pages/gamesSearches/detail', {result: result.rows[0]});
+      response.render('pages/gamesSearches/detail',{result: result.rows[0]});
     })
     .catch(err => {
-      console.error(err);
+      // console.error(err);
       errorPage(err, response);
     });
 }
@@ -209,16 +205,26 @@ function getGameDetails(request, response) {
 
 // Updating but acting strange
 function updateGame(request, response){
-  let {name, genres, release_date, summary, cover_url} = request.body;
-  let SQL = 'UPDATE games SET name=$1, genres=$2, release_date=$3, summary=$4, cover_url=$5 WHERE id=$6;';
-  let values = [name, genres, release_date, summary, cover_url, request.params.gameId];
+  let { name, genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played } = request.body;
 
-  client.query(SQL, values)
-    .then(response.redirect(`/games/${request.params.gameId}`))
+
+  let SQL = 'INSERT INTO genres (name) SELECT $1 WHERE NOT EXISTS (SELECT name FROM genres WHERE name = $2);';
+  let values = [genres, genres];
+
+  return client.query(SQL, values)
+    .then( () => {
+      let subQuery = '(SELECT genres.id FROM genres WHERE genres.name=$2)';
+      let SQLinner = `UPDATE games SET name=$1, genres_id=${subQuery}, release_date=$3, summary=$4, cover_url=$5, platforms=$6, rating=$7, game_mode=$8, company=$9, is_played=$10 WHERE id=$11;`;
+      if(is_played === undefined) is_played = false;
+      let valuesinner = [name, genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played, request.params.gameId];
+
+
+      return client.query(SQLinner, valuesinner)
+        .then(response.redirect(`/games/${request.params.gameId}`))
+        .catch(console.error);
+    })
     .catch(console.error);
 }
-
-
 
 function deleteGame(request, response){
   let SQL = 'DELETE FROM games WHERE id=$1;';
@@ -233,7 +239,9 @@ function deleteGame(request, response){
 
 // error
 function errorPage(error, response){
-  response.render('pages/error', {error: 'There was an issue. Stop breaking things!'});
+  // response.render('pages/error', {error: 'There was an issue. Stop breaking things!'});
+  response.render('pages/error', {error: error});
+
 }
 
 function aboutUsPage(request, response){
