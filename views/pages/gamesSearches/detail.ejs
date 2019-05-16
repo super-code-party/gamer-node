@@ -13,14 +13,16 @@
       <img src="<%=result.cover_url%>" alt="game corver art">
       <form action="<%=`/games/${result.id}`%>" method="post">
         <input type="hidden" name="_method" value="put">
-        <input type="text" name="name" value="<%=result.name%>" required>  
-        <input type="text" name="genres" value="<%=result.genres%>" required>  
-        <input type="text" name="release_date" value="<%=result.release_date%>" required>
-        <input type="text" name="summary" value="<%=result.summary%>" required>
+        <%= console.log('In details', result) %>
+        <input type="text" name="name" placeholder="title" value="<%=result.name%>" required>  
+        <input type="text" name="genres" placeholder="genre" value="<%=result.genres%>" required>  
+        <input type="text" name="release_date" placeholder="release date" value="<%=result.release_date%>" required>
+        <input type="text" name="summary" placeholder="summary" value="<%=result.summary%>" required>
         <input type="text" name="cover_url" value="<%=result.cover_url%>" required>
-        <input type="text" name="platforms" value="<%= result.platforms %>" required>
-        <input type="text" name="company" value="<%= result.company %>" required>
-        <input type="text" name="game_mode" value="<%= result.game_mode %>" required>
+        <input type="text" name="platforms" placeholder="platform" value="<%= result.platforms %>" required>
+        <input type="text" name="company" placeholder="company" value="<%= result.company %>" required>
+        <input type="text" name="gameMode" placeholder="multiplayer" value="<%= result.gamemode %>" required>
+        <input id="checkBox" type="checkbox" name="isPlayed" value="true">Is Played?<br>
         <button type="submit">Update this Game</button>
       </form>
     </section>
@@ -33,18 +35,23 @@
 
 
     <section class="detail">
-      <h2><%=result.name%></h2>
-      <h2><%= result.genres%></h2>
-      <h2><%= result.release_date%></h2>
-      <h2><%= result.company%></h2>
-      <%= console.log(result.company)%>
-       <h2><%= result.game_mode%></h2>
-      <p><%= result.summary%></p>
+      <h2>Title: <%=result.name%></h2>
+      <h2>Release Date: <%= result.release_date%></h2>
+      <h2>Company :<%= result.company%></h2>
+      <h2>Platform: <%= result.platforms%></h2>
+      <h2>Multiplayer: <%= result.gamemode%></h2> 
+      <p>Summary: <%= result.summary%></p>
+      <h2>Played: <%= result.isplayed%></h2> 
       <!-- <button><a href="/">Main Menu</a></button> -->
     </section>
   <footer>
       <%-include('../partials/footer')%>
     </footer>
 </main>
+ <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="/js/app.js"></script>
 </body>
 </html>

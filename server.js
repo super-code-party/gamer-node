@@ -170,7 +170,7 @@ function getGames(request, response) {
 
 
 function addGame(request, response) {
-  let {name, genres, release_date, summary, cover_url} = request.body;
+  let {name, genres, release_date, summary, cover_url, platforms, rating, gameMode, company, isPlayed} = request.body;
   // let SQL = 'INSERT INTO games(name, genres, release_date, summary, cover_url) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
   // let values = [name, genres, release_date, summary, cover_url];
 
@@ -180,16 +180,18 @@ function addGame(request, response) {
 
   return client.query(SQL, values)
     .then( () => {
-      let SQLinner = 'INSERT INTO games (name, genres_id, release_date, summary, cover_url) VALUES ($1, (SELECT genres.id FROM genres WHERE genres.name=$2), $3, $4, $5) RETURNING id;';
+      let SQLinner = 'INSERT INTO games (name, genres_id, release_date, summary, cover_url, platforms, rating, gameMode, company, isPlayed) VALUES ($1, (SELECT genres.id FROM genres WHERE genres.name=$2), $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id;';
       console.log('in second query');
-      let valuesInner = [name, genres, release_date, summary, cover_url];
+      let valuesInner = [name, genres, release_date, summary, cover_url, platforms, rating, gameMode, company, isPlayed];
 
       return client.query(SQLinner, valuesInner)
         .then(result => {
+          console.log('in second with request', request.body);
           response.redirect(`/games/${result.rows[0].id}`);
         });
     })
     .catch(console.error);
+
 }
 
 
@@ -198,6 +200,7 @@ function getGameDetails(request, response) {
   let values = [request.params.gameId];
   return client.query(SQL, values)
     .then(result => {
+      console.log('In getGameDetails', result.rows[0]);
       response.render('pages/gamesSearches/detail', {result: result.rows[0]});
     })
     .catch(err => {
@@ -209,9 +212,9 @@ function getGameDetails(request, response) {
 
 // Updating but acting strange
 function updateGame(request, response){
-  let {name, genres, release_date, summary, cover_url} = request.body;
-  let SQL = 'UPDATE games SET name=$1, genres=$2, release_date=$3, summary=$4, cover_url=$5 WHERE id=$6;';
-  let values = [name, genres, release_date, summary, cover_url, request.params.gameId];
+  let {name, genres, release_date, summary, cover_url, platforms, rating, gameMode, company, isPlayed} = request.body;
+  let SQL = 'UPDATE games SET name=$1, genres_id=(SELECT genres.id FROM genres WHERE genres.name=$2), release_date=$3, summary=$4, cover_url=$5, platforms=$6, rating=$7, gameMode=$8, company=$9, isPlayed=$10 WHERE id=$11;';
+  let values = [name, genres, release_date, summary, cover_url, platforms, rating, gameMode, company, isPlayed, request.params.gameId];
 
   client.query(SQL, values)
     .then(response.redirect(`/games/${request.params.gameId}`))

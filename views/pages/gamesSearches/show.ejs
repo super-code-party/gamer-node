@@ -18,18 +18,18 @@
           <h1><b>Title:</b> <%=videoGame.name;%></h1>
           <p><b>Summary:</b> <%= videoGame.summary;%></p>
           <button class="selectGame" type="submit">Select This Game</button>
-        
+            
             <form class="hideMe" action="/games/detail" method="POST">
               <input type="text" name="cover_url" value="<%= videoGame.cover_url %>" required>
-              <input type="text" name="name" value="<%= videoGame.name %>" required>
-              <input type="text" name="genres" value="<%= videoGame.genres %>" required>
-              <input type="text" name="release_date" value="<%= videoGame.release_date %>" required>
-              <input type="text" name="summary" value="<%= videoGame.summary %>" required>
-              <input type="text" name="platforms" value="<%= videoGame.platforms %>" required>
-              <input type="text" name="company" value="<%= videoGame.company %>" required>
-              <input type="text" name="game_mode" value="<%= videoGame.game_mode %>" required>
-              <input type="text" name="rating" value="<%= videoGame.rating %>" required>
-
+              <input type="text" name="name" placeholder="title" value="<%= videoGame.name %>" required>
+              <input type="text" name="genres" placeholder="genres" value="<%= videoGame.genres %>" required>
+              <input type="text" name="release_date" placeholder="release date" value="<%= videoGame.release_date %>" required>
+              <input type="text" name="summary" placeholder="summary" value="<%= videoGame.summary %>" required>
+              <input type="text" name="platforms" placeholder="platforms" value="<%= videoGame.platforms %>" required>
+              <input type="text" name="company" placeholder="company" value="<%= videoGame.company %>" required>
+              <input type="text" name="gameMode" placeholder="multiplayer" value="<%= videoGame.gameMode %>" required>
+              <input type="text" name="rating" placeholder="rating" value="<%= videoGame.rating %>" required>
+               <input id="checkBox" type="checkbox" name="isPlayed" value="true">Is Played?<br>
               <button type="submit">Add to Database</button>
             </form>
         </section>
