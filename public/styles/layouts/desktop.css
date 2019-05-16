@@ -101,16 +101,14 @@ footer {
     footer {
         background-color: #231a0c;
     }
-    /* header a img{
-        visibility: hidden;
-    } */
-    a #normal{
-        visibility: hidden;
-        display: none;
+
+    #good {
+      outline: 2px solid yellow;
+      display: none; 
     }
 
     #flowey {
-        visibility: visible;
-        float: left;
+      display: initial;
+      visibility: visible;
     }
 }
