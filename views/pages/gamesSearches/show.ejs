@@ -20,7 +20,7 @@
           <button class="selectGame" type="submit">Select This Game</button>
         
           <form class="hideMe" action="/games/detail" method="POST">
-            <input type="text" class="coverUrl" name="cover_url" value="<%= videoGame.cover_url %>" required>
+            <input type="text" name="cover_url" value="<%= videoGame.cover_url %>" required>
             <input type="text" name="name" value="<%= videoGame.name %>" required>
             <input type="text" name="genres" value="<%= videoGame.genres %>" required>
             <input type="text" name="release_date" value="<%= videoGame.release_date %>" required>

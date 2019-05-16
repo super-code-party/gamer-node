@@ -82,11 +82,12 @@ footer {
 }
 
 .listOfSearchedGames {
-  margin-top: 5%;
+  margin: 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  font-family: 'Righteous', cursive;
 }
   
 .individualGame {
@@ -157,4 +158,16 @@ footer {
 .listOfSearchedGames{
   font-family: 'Righteous', cursive;
 
+}
+
+.listOfSearchedGames button {
+  border-radius: 5px;
+  background-color: #506D2F;
+  font-size: 100%;
+  margin: 2%;
+  padding: 1%;
+}
+
+.selectGame {
+  font-family: 'Righteous', cursive;
 }

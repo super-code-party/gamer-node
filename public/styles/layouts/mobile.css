@@ -51,7 +51,7 @@ footer {
 
 
 .listOfSearchedGames {
-  margin-top: 5%;
+  margin: 5%;
   margin-bottom: 2%;
   display: flex;
   flex-direction: column;
@@ -141,7 +141,14 @@ footer {
   height: auto;
 }
 
-/* .coverUrl {
-  max-width: 90px;
-  height: auto;
-} */
+.listOfSearchedGames button {
+  border-radius: 5px;
+  background-color: #506D2F;
+  font-size: 100%;
+  margin: 2%;
+  padding: 1%;
+}
+
+.selectGame {
+  font-family: 'Righteous', cursive;
+}
