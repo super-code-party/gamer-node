@@ -106,6 +106,18 @@ footer {
   align-items: center;
   margin: 2%;
   
+
+  .individualGame img {
+    height: 30vh;
+    width: auto;
+    margin: 4%;
+  }
+
+  #evil {
+    outline: 2px solid yellow;
+    display:none;
+  }
+
 }
  .updateForm img{
    margin: 1%;

@@ -100,6 +100,13 @@ footer {
   margin: 4%;
 }
 
+#evil {
+  outline: 2px solid yellow;
+  display:none;
+}
+#good {
+  outline: 2px solid yellow;
+
 .detail{
   display: flex;
   flex-direction: column;
