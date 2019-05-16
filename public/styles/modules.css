@@ -54,7 +54,19 @@
 
 .detail p{
   text-align: center;
-  font-size: 3vw
+  font-size: 3vw;
+}
+
+.updateForm p{
+  font-size: 4vw;
+}
+
+.checkBox{
+  color: #F3EBDD;
+  font-size: 3vw;
+  
+
+
 }
 
 /* About Us */

@@ -13,17 +13,19 @@
       <img src="<%=result.cover_url%>" alt="game corver art">
       <form action="<%=`/games/${result.id}`%>" method="post">
         <input type="hidden" name="_method" value="put">
-        <input type="text" name="name" placeholder="title" value="<%=result.name%>" required>  
-        <input type="text" name="genres" placeholder="genre" value="<%=result.genres%>" required>  
-        <input type="text" name="release_date" placeholder="release date" value="<%=result.release_date%>" required>
-        <input type="text" name="summary" placeholder="summary" value="<%=result.summary%>" required>
-        <input type="text" name="cover_url" value="<%=result.cover_url%>" required>
-        <input type="text" name="platforms" placeholder="platform" value="<%= result.platforms %>" required>
-        <input type="text" name="company" placeholder="company" value="<%= result.company %>" required>
-        <input type="text" name="rating" placeholder="rating" value="<%= result.rating %>" required>
-        <input type="text" name="game_mode" placeholder="multiplayer" value="<%= result.game_mode %>" required>
+        <input class="hideMe" type="text" name="name" placeholder="title" value="<%=result.name%>" required>  
+        <input class="hideMe" type="text" name="genres" placeholder="genre" value="<%=result.genres%>" required>  
+        <input class="hideMe" type="text" name="release_date" placeholder="release date" value="<%=result.release_date%>" required>
+        <input class="hideMe" type="text" name="summary" placeholder="summary" value="<%=result.summary%>" required>
+        <input class="hideMe" type="text" name="cover_url" value="<%=result.cover_url%>" required>
+        <input class="hideMe" type="text" name="platforms" placeholder="platform" value="<%= result.platforms %>" required>
+        <input class="hideMe" type="text" name="company" placeholder="company" value="<%= result.company %>" required>
+        <input class="hideMe" type="text" name="rating" placeholder="rating" value="<%= result.rating %>" required>
+        <input class="hideMe" type="text" name="game_mode" placeholder="multiplayer" value="<%= result.game_mode %>" required>
+        
+        <p>Played?</p>
         <input id="checkBox" type="checkbox" name="is_played" value="true"<%= (result.is_played) ?  "checked" : " "; %>
-><p>Is Played?</p><br>
+><br><br><br>
 
         
        
