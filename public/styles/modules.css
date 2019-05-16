@@ -77,6 +77,13 @@ h1, p{
   display: none;
 }
 
+
+.deleteForm{
+  background-color: #F3EBDD;
+  margin: 1%;
+  text-align: center;
+}
+
 /*Flip animations*/
 
 #memberContainer {

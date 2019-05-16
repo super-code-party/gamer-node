@@ -3,7 +3,7 @@ header {
     width: 100%;
     background-color: #506D2F;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -31,6 +31,21 @@ header h1 {
 #search {
   font-size: 400%;
   font-family: 'Righteous', cursive;
+  background-color: #7D5646;
+  
+}
+
+.poison {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  font-family: 'Righteous', cursive;
+  font-size: 180%;
+}
+
+.gameCounter{
+  font-size: 150%
 }
 
 h2{
@@ -38,13 +53,11 @@ h2{
 } 
   
 footer {
-  position:fixed;
-  left:0px;
-  bottom:0px;
+  display: flex;
+  justify-content: space-around;
   height: 10vh;
-  font-size: 300%;
-  width: 100%;
-  background-color: #7D5642;
+  font-size: 170%;
+  align-items: center;
 }
   
 .formSearchContainer {
@@ -85,4 +98,52 @@ footer {
   height: 30vh;
   width: auto;
   margin: 4%;
+}
+
+.detail{
+  display: flex;
+  flex-direction: column;
+  /* align-items: baseline; */
+  font-family: 'Righteous', cursive;
+  justify-content: center;
+  align-items: center;
+  margin: 3%;
+
+}
+
+.detail h2{
+  font-size: 140%;
+}
+
+.updateForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2%;
+  
+}
+ .updateForm img{
+   margin: 1%;
+ }
+
+/* .updatForm input[type=text], textarea{
+  background-color: #F3EBDD;
+  width: 120%;
+} */
+
+.updateForm button {
+  background-color: #7D5646;
+  font-family: 'Righteous', cursive;
+}
+
+.deleteForm{
+  background-color: #F3EBDD;
+  margin: 1%;
+  text-align: center;
+  
+}
+
+.deleteForm button{
+  font-family: 'Righteous', cursive;
+  font-size: 150%;
 }
