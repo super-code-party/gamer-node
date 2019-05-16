@@ -140,6 +140,7 @@ footer {
 .listOfSearchedGames img {
   max-width: 90px;
   height: auto;
+  margin: 1%;
 }
 
 .listOfSearchedGames button {
@@ -148,6 +149,10 @@ footer {
   font-size: 100%;
   margin: 2%;
   padding: 1%;
+}
+
+.listOfSearchedGames h2{
+  margin: 1%;
 }
 
 .selectGame {
