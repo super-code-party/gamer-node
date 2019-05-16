@@ -84,3 +84,29 @@ footer {
   
 }
 
+.detail{
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  font-family: 'Righteous', cursive;
+  align-items: center;
+  margin: 3%;
+}
+
+.detail h2{
+  /* align-content: center; */
+  justify-content: center;
+  font-size: 120%;
+  
+}
+
+.deleteForm{
+  background-color: #F3EBDD;
+  margin: 1%;
+  text-align: center;
+  font-family: 'Righteous', cursive;
+}
+.deleteForm button{
+  font-family: 'Righteous', cursive;
+  font-size: 100%;
+}

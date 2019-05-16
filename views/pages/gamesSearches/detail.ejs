@@ -9,30 +9,32 @@
     <header>
           <%-include('../partials/header')%> 
     </header>
-    
-    <img src="<%=result.cover_url%>" alt="">
-    <form action="<%=`/games/${result.id}`%>" method="post">
-    <input type="hidden" name="_method" value="put">
-    <input type="text" name="name" value="<%=result.name%>" required>  
-    <input type="text" name="genres" value="<%=result.genres%>" required>  
-    <input type="text" name="release_date" value="<%=result.release_date%>" required>
-    <input type="text" name="summary" value="<%=result.summary%>" required>
-    <input type="text" name="cover_url" value="<%=result.cover_url%>" required>
-      <button type="submit">Update this task</button>
-    </form>
+    <section>
+      <img src="<%=result.cover_url%>" alt="">
+      <form action="<%=`/games/${result.id}`%>" method="post">
+        <input type="hidden" name="_method" value="put">
+        <input type="text" name="name" value="<%=result.name%>" required>  
+        <input type="text" name="genres" value="<%=result.genres%>" required>  
+        <input type="text" name="release_date" value="<%=result.release_date%>" required>
+        <input type="text" name="summary" value="<%=result.summary%>" required>
+        <input type="text" name="cover_url" value="<%=result.cover_url%>" required>
+        <button type="submit">Update this Game</button>
+      </form>
+    </section>
+    <section class=deleteForm>
+      <form action="<%=`/games/${result.id}`%>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit">Delete game</button>
+      </form>
+    </section>  
 
-    <form action="<%=`/games/${result.id}`%>" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <button type="submit">Delete game</button>
-    </form>
 
-
-
-    <h2><%=result.name%></h2>
-    <h2><%= result.genres%></h2>
-    <p><%= result.summary%></p>
-    <button><a href="/">Main Menu</a></button>
-
+    <section class="detail">
+      <h2><%=result.name%></h2>
+      <h2><%= result.genres%></h2>
+      <p><%= result.summary%></p>
+      <!-- <button><a href="/">Main Menu</a></button> -->
+    </section>
   <footer>
       <%-include('../partials/footer')%>
     </footer>

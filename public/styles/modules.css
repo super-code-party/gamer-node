@@ -69,3 +69,9 @@ h1, p{
 .hideMe {
   display: none;
 }
+
+.deleteForm{
+  background-color: #F3EBDD;
+  margin: 1%;
+  text-align: center;
+}

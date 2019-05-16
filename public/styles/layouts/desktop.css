@@ -15,7 +15,7 @@ header a{
 header a img {
   height: 80% ;
   width: auto;
-  margin-left: 10%;
+  /* margin-left: 10%; */
   margin-top: 5%;
 }
   
@@ -98,4 +98,30 @@ footer {
   height: 30vh;
   width: auto;
   margin: 4%;
+}
+
+.detail{
+  display: flex;
+  flex-direction: column;
+  /* align-items: baseline; */
+  font-family: 'Righteous', cursive;
+  justify-content: center;
+  align-items: center;
+  margin: 3%;
+
+}
+
+.detail h2{
+  font-size: 140%;
+  
+}
+.deleteForm{
+  background-color: #F3EBDD;
+  margin: 1%;
+  text-align: center;
+}
+
+.deleteForm button{
+  font-family: 'Righteous', cursive;
+  font-size: 200%;
 }
