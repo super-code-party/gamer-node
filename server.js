@@ -17,10 +17,13 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('./public'));
 
-
-//
-// Space left for methodOverride
-//
+app.use(methodOverride(function (req, res) {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    var method = req.body._method;
+    delete req.body._method;
+    return method;
+  }
+}));
 
 // Database Setup
 const client = new pg.Client(process.env.DATABASE_URL);
@@ -35,35 +38,41 @@ app.set('view engine', 'ejs');
 // Routes
 
 app.get('/', getGames);
-
 app.post('/gameSearches/show', searchInInternetGameDatabase);
+app.post('/games/detail', addGame);
+app.put('/games/:gameId', updateGame);
+app.get('/games/:gameId', getGameDetails);
+app.delete('/games/:gameId', deleteGame);
 
-// app.post('/detail', displayGameDetail);
 
 app.get('/error', errorPage);
+
+app.get('/about', aboutUsPage);
 
 
 
 function VideoGame(info) {
-  this.id = info.id;
+  this.id = info.id;      // Not using but might need for Stretch Goals
   this.name = info.name;
   this.cover_url = urlCheck(info);
   this.summary = info.summary;
-  this.platforms = checkPlatforms(info) || 'Platform not avialable!';
-  this.category = info.category;
-  this.genres = genreCheck(info) || 'Genre unavailable';
+
+  this.platforms = checkPlatforms(info) || 'Platform not available!';
+  this.genres = genreCheck(info) || 'Genre not available';
   this.release_date = epochConvert(info.first_release_date);
-
-
+  this.rating = parseInt(info.rating) || 'Rating not available';
+  this.gameMode = gameModeCheck(info) || 'Game mode not available';
+  this.company = companyCheck(info) || 'Company not available';
+  this.isPlayed = false;
 }
-
 
 //Converts image url from //url to https://url
 const urlCheck = (info) => {
   let image = 'http://1.bp.blogspot.com/-Dz_l-JwZRX8/U1bcqpZ86oI/AAAAAAAAACs/VUouedmQHic/s1600/skyrim_arrow_knee_g_display.jpg';
   if (info.cover === undefined || info.cover === null) {
     return image;
-  }else if(!info.cover.url.includes('https://')) {
+  }else{
+    (!info.cover.url.includes('https://'));
     let newData = info.cover.url.replace('/', 'https:/');
     return newData;
   }
@@ -71,8 +80,13 @@ const urlCheck = (info) => {
 
 //Converts release date from EPOCH to normal time
 const epochConvert = (time) => {
-  let date = new Date(time *1000).toString().slice(4, 15);
-  return date;
+  let noDate = 'TBA';
+  if(time === undefined || time === null){
+    return noDate;
+  }else{
+    let date = new Date(time *1000).toString().slice(4, 15);
+    return date;
+  }
 };
 
 //Checks if genres exists and has safeguard for ones that don't
@@ -96,15 +110,42 @@ const checkPlatforms = (info) => {
 };
 
 
-function searchInInternetGameDatabase(request, response) {
-  // let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=${request.body.typeOfSearch}`;
+//Checks if game mode exists and has safeguard for ones that don't
+const gameModeCheck = (info) => {
+  if(info.game_modes === undefined || info.game_modes === null){
+    return false;
+  }else{
+    return info.game_modes.map( (modes) => {
+      return modes.name;
+    });
+  }
+};
 
-  let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=category,name,platforms.name,cover.url,genres.name,first_release_date,url,summary`;
-  console.log(request.body.name);
-  console.log(request.body);
-  console.log(request.body.typeOfSearch);
-  console.log('Hello!!');
-  console.log(request.body);
+//Checks if company exists and has safeguard for ones that don't
+const companyCheck = (info) => {
+  if(info.involved_companies){
+    return info.involved_companies.map(() => {
+      return info.involved_companies[0].company.name;
+    });
+  }else{
+    return false;
+  }
+};
+
+
+//   if(info.involved_companies === undefined || info.involved_companies === null){
+//     return false;
+//   }else{
+//     return info.involved_companies.map((company) => {
+//       console.log(info.involved_companies.company.name);
+//       return company.name;
+//     });
+//   }
+// };
+
+
+function searchInInternetGameDatabase(request, response) {
+  let url = `https://api-v3.igdb.com/games/?search=${request.body.name}&fields=category,name,platforms.name,cover.url,genres.name,first_release_date,url,summary,rating,game_modes.name,involved_companies.company.name`;
 
   superagent.post(url)
     .set('user-key', process.env.IGDB_API_KEY)
@@ -112,16 +153,7 @@ function searchInInternetGameDatabase(request, response) {
     .then(response => response.body.map(apiResult => new VideoGame(apiResult)))
     .then(videoGames => response.render('pages/gamesSearches/show', {listOfVideoGames: videoGames}))
     .catch(console.error);
-
 }
-
-//Needs work
-// function displayGameDetail(request, response){
-//   let values = [request.params.game_id];
-//   console.log('values in displayGameDetail', values);
-
-//   response.redirect('gameSearches/detail');
-// }
 
 
 function getGames(request, response) {
@@ -129,17 +161,83 @@ function getGames(request, response) {
 
   return client.query(SQL)
     .then(result => {
-      console.log(result);
       response.render('index', {results: result.rows});
     })
-    .catch(errorPage);
+    .catch(console.error);
 }
 
+
+
+
+function addGame(request, response) {
+  let {name, genres, release_date, summary, cover_url} = request.body;
+  // let SQL = 'INSERT INTO games(name, genres, release_date, summary, cover_url) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
+  // let values = [name, genres, release_date, summary, cover_url];
+
+  let SQL = 'INSERT INTO genres (name) SELECT $1 WHERE NOT EXISTS (SELECT name FROM genres WHERE name = $2);';
+  let values = [genres, genres];
+
+
+  return client.query(SQL, values)
+    .then( () => {
+      let SQLinner = 'INSERT INTO games (name, genres_id, release_date, summary, cover_url) VALUES ($1, (SELECT genres.id FROM genres WHERE genres.name=$2), $3, $4, $5) RETURNING id;';
+      console.log('in second query');
+      let valuesInner = [name, genres, release_date, summary, cover_url];
+
+      return client.query(SQLinner, valuesInner)
+        .then(result => {
+          response.redirect(`/games/${result.rows[0].id}`);
+        });
+    })
+    .catch(console.error);
+}
+
+
+function getGameDetails(request, response) {
+  let SQL = 'SELECT * FROM games WHERE id=$1;';
+  let values = [request.params.gameId];
+  return client.query(SQL, values)
+    .then(result => {
+      response.render('pages/gamesSearches/detail', {result: result.rows[0]});
+    })
+    .catch(err => {
+      console.error(err);
+      errorPage(err, response);
+    });
+}
+
+
+// Updating but acting strange
+function updateGame(request, response){
+  let {name, genres, release_date, summary, cover_url} = request.body;
+  let SQL = 'UPDATE games SET name=$1, genres=$2, release_date=$3, summary=$4, cover_url=$5 WHERE id=$6;';
+  let values = [name, genres, release_date, summary, cover_url, request.params.gameId];
+
+  client.query(SQL, values)
+    .then(response.redirect(`/games/${request.params.gameId}`))
+    .catch(console.error);
+}
+
+
+
+function deleteGame(request, response){
+  let SQL = 'DELETE FROM games WHERE id=$1;';
+  let values = [request.params.gameId];
+
+
+  client.query(SQL, values)
+    .then(response.redirect('/'))
+    .catch(console.error);
+}
 
 
 // error
 function errorPage(error, response){
   response.render('pages/error', {error: 'There was an issue. Stop breaking things!'});
+}
+
+function aboutUsPage(request, response){
+  response.render('pages/about', {about: 'Welcome to our page'});
 }
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

@@ -11,52 +11,24 @@
 
   <main>
     <section>
-
       <form class="formSearchContainer" action="/gameSearches/show" method="POST">
-
-        <input type="text" name="name" placeholder="Search for game, genre, company" required>
-
-        <input type="text" name="typeOfSearch" placeholder="Type of Search" required>
-
-
-        <!-- Does not work -->
-        <!-- <select required>
-          <option disabled selected value>Search By</option>
-          <option name="typeOfSearch" value="name">Name</option>
-        </select> -->
-
-
+        <input type="text" name="name" placeholder="Search for Games" required>
         <button id="search" type="submit">Search</button>
-
       </form>
-
-  </section>
-
-
-  <section class="showContainer">
-    <% results.forEach(videoGames => { %>
+    </section>
+    <section class="gameCounter">
+      <p>Games in Storage: <%= results.length %></p>
+    </section>  
+    <section class="showContainer">
+      <% results.forEach(videoGames => { %>
       <img src="<%= videoGames.cover_url %>"  alt="">
       <h2><%= videoGames.name %> </h2>
       <h2><%= videoGames.genres %></h2>
-   
-    
-    
-    <% }) %>
+      <a href="/games/<%=videoGames.id%>"><button class="viewButton">View Details</button></a> 
+      <% }) %>
+    </section>
 
-
-    <% console.log(results) %>
-      <%= results[0].id %>
-  </section>
-
-  <!-- Game Layout Partial
-  <section>
-    <h3>Title</h3>
-    <h3>Creator</h3>
-    <h3>Description</h3>
-  </section> -->
 </main>
-
-
   <footer>
       <%-include('./pages/partials/footer')%>
   </footer>

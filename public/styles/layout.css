@@ -2,3 +2,12 @@
 @import url('./layouts/tablet.css')  (min-width: 768px) and (max-width: 979px);
 @import url('./layouts/desktop.css')  (min-width: 980px);
 
+
+
+/* About Us */
+
+.container{
+  width: 90vh;
+  height: 140vh;
+  flex-flow: wrap;
+}

@@ -6,49 +6,45 @@
 </head>
 
 <body>
-
   <header>
     <%-include('../partials/header')%>
   </header>
-
   <main>
+
     <section class="listOfSearchedGames">
-
-
       <% listOfVideoGames.forEach(videoGame => { %>  
-        <p>Title:<%= videoGame.name; %></p>
-        <img src="<%= videoGame.cover_url; %>"/>
-        <p>Summary:<%= videoGame.summary; %></p>
-        <p>Category:<%= videoGame.category; %></p>
-        <p>Release Date:<%= videoGame.release_date  %></p>
-        <p>Genre:<%= videoGame.genres  %></p>
-        <p> Platforms: <%= videoGame.platforms %> </p>
-    
-            
-            
-           <section class="videoGameDetails">
-            <form action="/detail" method="POST">
-              <input type="text" name="title" value="<%= videoGame.name %>" required>
-              <input type="text" name="summary" value="<%= videoGame.id %>" required>
-              <button type="submit">See Game Details</button>
-            </form>
-          </section>
-        </div>
+        <section>
+          <img src="<%= videoGame.cover_url; %>"/>
+          <p><%=videoGame.name;%></p>
+          <p><%= videoGame.summary;%></p>
+          <button class="selectGame" type="submit">Select This Game</button>
+        
+            <form class="hideMe" action="/games/detail" method="POST">
+              <input type="text" name="cover_url" value="<%= videoGame.cover_url %>" required>
+              <input type="text" name="name" value="<%= videoGame.name %>" required>
+              <input type="text" name="genres" value="<%= videoGame.genres %>" required>
+              <input type="text" name="release_date" value="<%= videoGame.release_date %>" required>
+              <input type="text" name="summary" value="<%= videoGame.summary %>" required>
+              <input type="text" name="summary" value="<%= videoGame.platforms %>" required>
+              <input type="text" name="summary" value="<%= videoGame.company %>" required>
+              <input type="text" name="summary" value="<%= videoGame.game_mode %>" required>
+              <input type="text" name="summary" value="<%= videoGame.rating %>" required>
 
+              <button type="submit">Add to Database</button>
+            </form>
+        </section>
       <% }) %>
     </section>
   </main>
-
-  Game List Partial
-  <section>
-    <img>
-    <h3>Title</h3>
-    <h3>ESRB</h3>
-  </section>
 
   <footer>
       <%-include('../partials/footer')%>
   </footer>
   
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="/js/app.js"></script>
 </body>
 </html>
