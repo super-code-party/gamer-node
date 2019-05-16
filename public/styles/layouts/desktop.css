@@ -167,6 +167,8 @@ footer {
   border-radius: 5px;
   background-color: #506D2F;
   font-size: 100%;
+  margin: 2%;
+  padding: 1%;
 }
 
 .selectGame {
