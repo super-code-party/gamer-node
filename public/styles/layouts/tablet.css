@@ -147,3 +147,14 @@ footer {
   font-family: 'Righteous', cursive;
   font-size: 150%;
 }
+
+/* searches/show */
+.listOfSearchedGames img {
+  max-width: 90px;
+  height: auto;
+}
+
+.listOfSearchedGames{
+  font-family: 'Righteous', cursive;
+
+}
