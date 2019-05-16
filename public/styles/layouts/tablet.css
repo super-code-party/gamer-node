@@ -3,7 +3,7 @@ header {
     width: 100%;
     background-color: #506D2F;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -57,6 +57,7 @@ footer {
   justify-content: space-around;
   height: 10vh;
   font-size: 170%;
+  align-items: center;
 }
   
 .formSearchContainer {

@@ -3,7 +3,7 @@ header {
   width: 100%;
   background-color: #506D2F;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-bottom: 2%;
 }
@@ -45,6 +45,7 @@ footer {
   justify-content: space-around;
   font-size: 120%;
   height: 10vh;
+  align-items: center;
   
 }
 
@@ -82,3 +83,4 @@ footer {
   height: auto;
   
 }
+
