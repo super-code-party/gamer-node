@@ -15,7 +15,6 @@ header a{
 header a img {
   height: 80% ;
   width: auto;
-  /* margin-left: 10%; */
   margin-top: 5%;
 }
   
@@ -103,7 +102,6 @@ footer {
 .detail{
   display: flex;
   flex-direction: column;
-  /* align-items: baseline; */
   font-family: 'Righteous', cursive;
   justify-content: center;
   align-items: center;
@@ -125,11 +123,6 @@ footer {
  .updateForm img{
    margin: 1%;
  }
-
-/* .updatForm input[type=text], textarea{
-  background-color: #F3EBDD;
-  width: 120%;
-} */
 
 .updateForm button {
   background-color: #7D5646;

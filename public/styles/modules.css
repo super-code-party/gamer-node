@@ -48,35 +48,51 @@
 
 /* About Us */
 
-h1, p{
+h1{
+  font-size: 3.5em;
   text-align: center;
 }
 
 
-.profileCards{
+/* .profileCards{
   outline: 5px white solid;
   display: flex;
-}
-
-.profileCards p {
-  max-width: 45%;
-}
-
-.profileCards img{
-  max-height: 130px;
-}
-
-/* .gamer{
-  outline: 5px white solid;
-  max-width: 70%;
-  margin-top: 5%;
-  display: none;
 } */
 
-.hideMe {
-  display: none;
+/* .profileCards p {
+  max-width: 45%;
+} */
+
+/* .profileCards img{
+  max-height: 130px;
+} */
+#memberContainer {
+  width: 90vw;
 }
 
+.memberCard {
+  display:flex;
+  
+  margin-top:10%;
+  outline: 5px white solid;
+  width: 100%;
+}
+.front{
+  word-wrap:break-word;
+  width:50vw;
+  align-items: center;
+  outline: 5px white solid;
+}
+.gamer {
+  text-align: center;
+  width:50vw;
+  outline: 5px white solid;
+}
+
+.gamer img {
+  width: 100px;
+  height: 100px;
+}
 
 .deleteForm{
   background-color: #F3EBDD;
@@ -86,7 +102,7 @@ h1, p{
 
 /*Flip animations*/
 
-#memberContainer {
+/* #memberContainer {
   position: relative;
   width: 100%;
   height: 100%;
@@ -98,7 +114,7 @@ h1, p{
   height: 90%;
   transform-style: preserve-3d;
   transition: all .5s ease;
-  /* background: yellow; */
+  
 }
 
 .memberCard:hover{
@@ -117,4 +133,4 @@ h1, p{
   backface-visibility: hidden;
 
   transform: rotateY(180deg);
-}
+} */
