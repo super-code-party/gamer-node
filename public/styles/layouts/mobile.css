@@ -1,9 +1,9 @@
 header {
-  height: 15vh;
+  display: flex;
+  height: 12vh;
   width: 100%;
   background-color: #506D2F;
-  display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   margin-bottom: 2%;
 }
@@ -12,18 +12,20 @@ header a{
   width: 20%;
   height: 100%;
 }
-header i {
+/* header i {
   margin-right: 5%;
-}
+} */
 
 header a img {
-  height: 75% ;
-  width: auto;
-  margin-left: 10%;
+  width: 80%;
+  height: auto;
+  margin-left: 20%;
   margin-top: 10%;  
 }
 
 header h1 {
+  flex-grow: .75;
+  align-self: center;
   margin-right:10%;
   font-size: 200%;
   font-family: 'Righteous', cursive;
@@ -43,24 +45,24 @@ h2{
 footer {
   display: flex;
   justify-content: space-around;
-  font-size: 120%;
+  font-size: 150%;
   height: 10vh;
   align-items: center;
   
 }
 
-
 .listOfSearchedGames {
-  margin-top: 5%;
+  margin: 5%;
+  margin-bottom: 2%;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  font-family: 'Righteous', cursive;
 }
 
 .individualGame {
   outline: 2px solid yellow;
-
 }
 
 .individualGame img {
@@ -76,13 +78,18 @@ footer {
   height: auto;
   font-family: 'Righteous', cursive;
   font-size: 150%;
+  align-items: center;
+  align-content: center;
 }
 
 #poisonImg{
-  width: 100%;
-  height: auto;
-  
+  max-width: 375px;
 }
+
+.poison p {
+  color:#7B40C4;
+}
+
 
 .detail{
   display: flex;
@@ -127,7 +134,37 @@ footer {
   text-align: center;
   font-family: 'Righteous', cursive;
 }
+
 .deleteForm button{
   font-family: 'Righteous', cursive;
   font-size: 100%;
+}
+
+
+/* searches/show */
+
+.listOfSearchedGames img {
+  max-width: 90px;
+  height: auto;
+  margin: 1%;
+}
+
+.listOfSearchedGames button {
+  border-radius: 5px;
+  background-color: #506D2F;
+  font-size: 100%;
+  margin: 2%;
+  padding: 1%;
+}
+
+.listOfSearchedGames h2{
+  margin: 1%;
+}
+
+.selectGame {
+  font-family: 'Righteous', cursive;
+}
+
+.addToDatabase{
+  font-family: 'Righteous', cursive;
 }

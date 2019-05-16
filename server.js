@@ -245,7 +245,7 @@ function errorPage(error, response){
 }
 
 function aboutUsPage(request, response){
-  response.render('pages/about', {about: 'Welcome to our page'});
+  response.render('pages/about', {about: 'Say Hello to Our Dev Team!'});
 }
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
