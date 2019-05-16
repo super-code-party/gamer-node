@@ -74,20 +74,26 @@ h1{
 .memberCard {
   display:flex;
   margin-top:10%;
-  outline: 5px white solid;
+
   width: 100%;
   height: 90%;
+  margin-left: 5%;
 }
 .front{
   word-wrap:break-word;
   width:50vw;
   text-align: center;
-  outline: 5px white solid;
+}
+.front img {
+  width: 100px;
+  height: 100px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+
 }
 .gamer {
   text-align: center;
   width:50vw;
-  outline: 5px white solid;
 }
 
 .gamer img {
