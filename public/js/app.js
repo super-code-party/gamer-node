@@ -13,12 +13,5 @@ $('.selectGame').on('click', function(event) {
   }
 });
 
-//Checkbox returns boolean on detail.ejs 
-$('#checkBox').on('change', function() {
-  if ($(this).is(':checked')) {
-    $(this).attr('value', 'true');
-  } else {
-    $(this).attr('value', 'false');
-  }
-});
+
 

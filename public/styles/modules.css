@@ -49,12 +49,17 @@
 
 /* Details Page */
 .detail h2{
-  
+  font-size: 5vw;
+}
+
+.detail p{
+  text-align: center;
+  font-size: 3vw
 }
 
 /* About Us */
 
-h1, p{
+h2, p{
   text-align: center;
 }
 

@@ -20,11 +20,17 @@
         <input type="text" name="cover_url" value="<%=result.cover_url%>" required>
         <input type="text" name="platforms" placeholder="platform" value="<%= result.platforms %>" required>
         <input type="text" name="company" placeholder="company" value="<%= result.company %>" required>
+        <input type="text" name="rating" placeholder="rating" value="<%= result.rating %>" required>
         <input type="text" name="game_mode" placeholder="multiplayer" value="<%= result.game_mode %>" required>
+        <input id="checkBox" type="checkbox" name="is_played" value="true"<%= (result.is_played) ?  "checked" : " "; %>
+><p>Is Played?</p><br>
+
+        
+       
         <button type="submit">Update this Game</button>
       </form>
     </section>
-
+    
     <section class=deleteForm>
       <form action="<%=`/games/${result.id}`%>" method="post">
         <input type="hidden" name="_method" value="delete">
@@ -34,14 +40,15 @@
 
 
     <section class="detail">
-      <h2>Title: <%=result.name%></h2>
-      <h2>Release Date: <%= result.release_date%></h2>
-      <h2>Company :<%= result.company%></h2>
-      <h2>Platform: <%= result.platforms%></h2> 
-      <h2>Genre: <%=result.genres%></h2>
-      <h2>Multiplayer: <%= result.game_mode%></h2> 
-      <p>Summary: <%= result.summary%></p>
-      <h2>Played: <%= result.isplayed%></h2> 
+      <h2>Title: <%=result.name%></h2><br>
+      <h2>Release Date: <%= result.release_date%></h2><br>
+      <h2>Company: <%= result.company%></h2><br>
+      <h2>Rating: <%= result.rating%></h2><br>
+      <h2>Platform: <%= result.platforms%></h2><br>
+      <h2>Genre: <%=result.genres%></h2><br>
+      <h2>Multiplayer: <%= result.game_mode%></h2><br> 
+      <p>Summary: <%= result.summary%></p><br>
+      <h2>Played: <%= result.is_played%></h2><br> 
     </section>
   <footer>
       <%-include('../partials/footer')%>

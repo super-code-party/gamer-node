@@ -159,8 +159,7 @@ function getGames(request, response) {
 
 function addGame(request, response) {
   let {name, genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played} = request.body;
-  // let SQL = 'INSERT INTO games(name, genres, release_date, summary, cover_url) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
-  // let values = [name, genres, release_date, summary, cover_url];
+ 
 
   let SQL = 'INSERT INTO genres (name) SELECT $1 WHERE NOT EXISTS (SELECT name FROM genres WHERE name = $2);';
   let values = [genres, genres];
@@ -170,8 +169,11 @@ function addGame(request, response) {
     .then( () => {
       let subQuery = '(SELECT genres.id FROM genres WHERE genres.name=$2)';
       let SQLinner = `INSERT INTO games (name, genres_id, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played) VALUES ($1, ${subQuery}, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id;`;
+      if(is_played === undefined) is_played = false;
+      console.log('In addGame Function', is_played);
 
       let valuesInner = [name, genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played];
+
 
       return client.query(SQLinner, valuesInner)
         .then(result => {
@@ -189,7 +191,7 @@ function addGame(request, response) {
 function getGameDetails(request, response) {
   let SQL = 'SELECT games.name, games.id, genres.name AS genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played  FROM games,genres WHERE games.genres_id=genres.id AND games.id=$1;';
   let values = [request.params.gameId];
-  console.log(values);
+
   return client.query(SQL, values)
     .then(result => {
       response.render('pages/gamesSearches/detail',{result: result.rows[0]});
@@ -205,7 +207,6 @@ function getGameDetails(request, response) {
 function updateGame(request, response){
   let { name, genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played } = request.body;
 
-  // console.log('in updateGame', request.body);
 
   let SQL = 'INSERT INTO genres (name) SELECT $1 WHERE NOT EXISTS (SELECT name FROM genres WHERE name = $2);';
   let values = [genres, genres];
@@ -214,8 +215,9 @@ function updateGame(request, response){
     .then( () => {
       let subQuery = '(SELECT genres.id FROM genres WHERE genres.name=$2)';
       let SQLinner = `UPDATE games SET name=$1, genres_id=${subQuery}, release_date=$3, summary=$4, cover_url=$5, platforms=$6, rating=$7, game_mode=$8, company=$9, is_played=$10 WHERE id=$11;`;
-    
+      if(is_played === undefined) is_played = false;
       let valuesinner = [name, genres, release_date, summary, cover_url, platforms, rating, game_mode, company, is_played, request.params.gameId];
+
 
       return client.query(SQLinner, valuesinner)
         .then(response.redirect(`/games/${request.params.gameId}`))
