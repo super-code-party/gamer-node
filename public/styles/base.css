@@ -14,3 +14,19 @@ h1, h2, p {
   color: #F3EBDD;
 }
 
+footer{
+  display: flex;
+  align-items: baseline;
+  align-content: center;
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  background-color: #506D2F;
+  font-family: 'Righteous', cursive;
+  width: 100%;
+}
+
+#search {
+  background-color: Bark #7D5646;
+  font-family: 'Righteous', cursive;
+}

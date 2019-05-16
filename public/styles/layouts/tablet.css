@@ -38,13 +38,10 @@ h2{
 } 
   
 footer {
-  position:fixed;
-  left:0px;
-  bottom:0px;
+  display: flex;
+  justify-content: space-around;
   height: 10vh;
-  font-size: 300%;
-  width: 100%;
-  background-color: #7D5642;
+  font-size: 250%;
 }
   
 .formSearchContainer {
