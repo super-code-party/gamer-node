@@ -167,16 +167,27 @@ function getGames(request, response) {
 }
 
 
+
+
 function addGame(request, response) {
   let {name, genres, release_date, summary, cover_url} = request.body;
+  // let SQL = 'INSERT INTO games(name, genres, release_date, summary, cover_url) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
+  // let values = [name, genres, release_date, summary, cover_url];
 
-  let SQL = 'INSERT INTO games(name, genres, release_date, summary, cover_url) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
+  let SQL = 'INSERT INTO genres (name) SELECT $1 WHERE NOT EXISTS (SELECT name FROM genres WHERE name = $2);';
+  let values = [genres, genres];
 
-  let values = [name, genres, release_date, summary, cover_url];
 
   return client.query(SQL, values)
-    .then(result => {
-      response.redirect(`/games/${result.rows[0].id}`);
+    .then( () => {
+      let SQLinner = 'INSERT INTO games (name, genres_id, release_date, summary, cover_url) VALUES ($1, (SELECT genres.id FROM genres WHERE genres.name=$2), $3, $4, $5) RETURNING id;';
+      console.log('in second query');
+      let valuesInner = [name, genres, release_date, summary, cover_url];
+
+      return client.query(SQLinner, valuesInner)
+        .then(result => {
+          response.redirect(`/games/${result.rows[0].id}`);
+        });
     })
     .catch(console.error);
 }
