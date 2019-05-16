@@ -66,13 +66,6 @@ h1, p{
   max-height: 130px;
 }
 
-/* .gamer{
-  outline: 5px white solid;
-  max-width: 70%;
-  margin-top: 5%;
-  display: none;
-} */
-
 .hideMe {
   display: none;
 }
@@ -108,7 +101,6 @@ h1, p{
 .front{
   position: absolute;
   backface-visibility: hidden;
-  
   
 }
 

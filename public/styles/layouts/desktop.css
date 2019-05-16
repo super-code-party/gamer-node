@@ -1,10 +1,10 @@
 header {
-    height: 10vh;
-    width: 100%;
-    background-color: #506D2F;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  height: 12vh;
+  width: 100%;
+  background-color: #506D2F;
+  text-align: center;
+  margin-bottom: 2%;  
 }
 
 header a{
@@ -15,18 +15,16 @@ header a{
 header a img {
   height: 80% ;
   width: auto;
-  /* margin-left: 10%; */
   margin-top: 5%;
 }
   
-header i {
-  margin-right: 15%;
-}
-  
 header h1 {
+  flex-grow: .75;
+  align-self: center;
   margin-right:10%;
   font-size: 300%;
-  font-family: 'Righteous', cursive;
+  font-family: 
+  'Righteous', cursive;
 }
 #search {
   font-size: 400%;
@@ -41,6 +39,10 @@ header h1 {
   height: auto;
   font-family: 'Righteous', cursive;
   font-size: 220%;
+}
+
+.poison p {
+  color:#7B40C4;
 }
 
 .gameCounter{
@@ -91,7 +93,7 @@ footer {
 }
   
 .individualGame {
-  outline: 2px solid yellow;
+  /* outline: 2px solid yellow; */
   
 }
   
@@ -104,12 +106,10 @@ footer {
 .detail{
   display: flex;
   flex-direction: column;
-  /* align-items: baseline; */
   font-family: 'Righteous', cursive;
   justify-content: center;
   align-items: center;
   margin: 3%;
-
 }
 
 .detail h2{
@@ -148,6 +148,7 @@ footer {
   font-size: 200%;
 }
 
+
 /* searches/show */
 
 .listOfSearchedGames img {
@@ -174,4 +175,15 @@ footer {
 
 .addToDatabase{
   font-family: 'Righteous', cursive;
+
+.poison{
+  display: flex;
+  align-items: center;
+  align-content: center;
+
+}
+
+#poisonImg{
+  max-width: 425px;
+
 }
