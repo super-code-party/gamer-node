@@ -42,6 +42,12 @@ header h1 {
   height: auto;
   font-family: 'Righteous', cursive;
   font-size: 180%;
+  align-items: center;
+  align-content: center;
+}
+
+#poisonImg{
+  max-width: 425px;
 }
 
 .gameCounter{

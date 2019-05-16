@@ -12,9 +12,9 @@ header a{
   width: 20%;
   height: 100%;
 }
-header i {
+/* header i {
   margin-right: 5%;
-}
+} */
 
 header a img {
   height: 75% ;
@@ -76,13 +76,15 @@ footer {
   height: auto;
   font-family: 'Righteous', cursive;
   font-size: 150%;
+  align-items: center;
+  align-content: center;
 }
 
 #poisonImg{
-  width: 100%;
-  height: auto;
-  
+  max-width: 375px;
 }
+
+
 
 .detail{
   display: flex;
