@@ -9,8 +9,8 @@
     <header>
           <%-include('../partials/header')%> 
     </header>
-    <section>
-      <img src="<%=result.cover_url%>" alt="">
+    <section class="updateForm">
+      <img src="<%=result.cover_url%>" alt="game corver art">
       <form action="<%=`/games/${result.id}`%>" method="post">
         <input type="hidden" name="_method" value="put">
         <input type="text" name="name" value="<%=result.name%>" required>  

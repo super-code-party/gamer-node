@@ -115,6 +115,27 @@ footer {
   font-size: 140%;
 }
 
+.updateForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2%;
+  
+}
+ .updateForm img{
+   margin: 1%;
+ }
+
+/* .updatForm input[type=text], textarea{
+  background-color: #F3EBDD;
+  width: 120%;
+} */
+
+.updateForm button {
+  background-color: #7D5646;
+  font-family: 'Righteous', cursive;
+}
+
 .deleteForm{
   background-color: #F3EBDD;
   margin: 1%;
