@@ -12,15 +12,12 @@ header a{
   width: 20%;
   height: 100%;
 }
-/* header i {
-  margin-right: 5%;
-} */
 
 header a img {
-  width: 80%;
+  width: 70%;
   height: auto;
   margin-left: 20%;
-  margin-top: 10%;  
+  margin-top: 5%;
 }
 
 header h1 {
@@ -48,7 +45,18 @@ footer {
   font-size: 150%;
   height: 10vh;
   align-items: center;
-  
+  text-decoration: none;
+}
+
+.showContainer {
+  font-family: 'Righteous', cursive;
+  color: #F3EBDD;
+  text-align: center;
+  display:flex;
+}
+
+.viewButton {
+  margin-bottom: 30%; 
 }
 
 .listOfSearchedGames {
