@@ -1,10 +1,20 @@
 /* index */
 .showContainer {
   display: flex;
-  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow-x: auto; 
+}
+
+.card {
+  flex: 0 0 auto;
   justify-content: center;
   align-items: center;
   margin: 5%;
+  max-width: 50vw;
+}
+
+.card h2{
+  font-size: 3vw; 
 }
 
 .viewButton {
