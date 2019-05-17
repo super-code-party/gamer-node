@@ -10,7 +10,7 @@
 .viewButton {
   margin-top: 15%;
   border-radius: 5px;
-  font-size: 2vh;
+  font-size: 4vh;
   font-family: 'Righteous', cursive;
 }
 
@@ -48,7 +48,7 @@ form{
 /* Results page */
 /* Show-hide button */
 .listOfSearchedGames h1, h2{
-  font-size: 8vw;
+  font-size: 6vw;
 }
 
 .listOfSearchedGames h4{
@@ -73,21 +73,21 @@ form{
 
 .updateForm p{
   font-size: 10vw;
-  margin-left: 25%
+  margin-left: 18%
 }
 
 .updateForm button{
   font-size: 200%;
 }
 
-.checkBox{
-  color: #F3EBDD;
-  font-size: 3vw;
+input[type=checkbox]{
+  zoom: 3.5;
 }
 
 .updateForm input{
   margin-left: 45%;
 }
+
 
 /* About Us */
 
@@ -97,19 +97,6 @@ h1{
   text-align: center;
 }
 
-
-/* .profileCards{
-  outline: 5px white solid;
-  display: flex;
-} */
-
-/* .profileCards p {
-  max-width: 45%;
-} */
-
-/* .profileCards img{
-  max-height: 130px;
-} */
 #memberContainer {
   width: 90vw;
   height: 90%;
@@ -118,7 +105,6 @@ h1{
 .memberCard {
   display:flex;
   margin-top:10%;
-
   width: 100%;
   height: 90%;
   margin-left: 5%;
@@ -133,12 +119,12 @@ h1{
 }
 
 .memberCard p{
-  font-size: 5vw;
+  font-size: 3.5vw;
 }
 
 .profileCards span{
   text-decoration: underline;
-  font-size: 5vw;
+  font-size: 3.5vw;
 }
 
 .front{
@@ -159,6 +145,7 @@ h1{
 }
 
 .hideMe {
+  font-size: 2vw;
   display: none;
 
 }
@@ -179,37 +166,3 @@ h1{
 .fab{
   font-size: 220%;
 }
-
-/*Flip animations*/
-
-/* #memberContainer {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.memberCard {
-  position: absolute;
-  width: 90%;
-  height: 90%;
-  transform-style: preserve-3d;
-  transition: all .5s ease;
-  
-}
-
-.memberCard:hover{
-  transform: rotateY(180deg)
-}
-
-.front{
-  position: absolute;
-  backface-visibility: hidden;
-  
-}
-
-.gamer{
-  position: absolute;
-  backface-visibility: hidden;
-
-  transform: rotateY(180deg);
-} */
