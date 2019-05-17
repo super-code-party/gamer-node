@@ -15,10 +15,10 @@
       <% listOfVideoGames.forEach(videoGame => { %>  
         <section>
           <img src="<%= videoGame.cover_url; %>"/>
-          <h1><b>Title:</b> <%=videoGame.name;%></h1>
-          <h2><b>Genre:</b> <%= videoGame.genres;%></h2>
-          <h4><b>Rating:</b> <%= videoGame.rating;%></h4>
-          <button class="selectGame" type="submit">Select This Game</button>
+          <h1><b>Title:</b> <%=videoGame.name;%></h1><br>
+          <h2><b>Genre:</b> <%= videoGame.genres;%></h2><br>
+          <h4><b>Rating:</b> <%= videoGame.rating;%></h4><br>
+          <button class="selectGame" type="submit">Select This Game</button><br>
             
             <form class="hideMe" action="/games/detail" method="POST">
               <input class="hideMe" type="text" name="cover_url" value="<%= videoGame.cover_url %>" required>
@@ -30,7 +30,7 @@
               <input class="hideMe" type="text" name="company" placeholder="company" value="<%= videoGame.company %>" required>
               <input class="hideMe" type="text" name="game_mode" placeholder="multiplayer" value="<%= videoGame.game_mode %>" required>
               <input class="hideMe" type="text" name="rating" placeholder="rating" value="<%= videoGame.rating %>" required>
-               <input id="checkBox" type="checkbox" name="is_played" value="true">Played?<br>
+               <input id="checkBox" type="checkbox" name="is_played" value="true"><h1>Played?<h1><br>
               <button  type="submit">Add to Database</button>
             </form>
         </section>
