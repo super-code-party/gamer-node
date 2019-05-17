@@ -14,10 +14,10 @@ header a{
 }
 
 header a img {
-  width: 70%;
+  width: 40%;
   height: auto;
-  margin-left: 20%;
-  margin-top: 5%;
+  margin-left: 50%;
+  margin-top: 12%;
 }
 
 header h1 {
@@ -126,11 +126,6 @@ footer {
    margin: 1%;
  }
 
-/* .updatForm input[type=text], textarea{
-  background-color: #F3EBDD;
-  width: 120%;
-} */
-
 .updateForm button {
   background-color: #7D5646;
   font-family: 'Righteous', cursive;
@@ -160,7 +155,7 @@ footer {
 .listOfSearchedGames button {
   border-radius: 5px;
   background-color: #506D2F;
-  font-size: 100%;
+  font-size: 120%;
   margin: 2%;
   padding: 1%;
 }

@@ -16,7 +16,7 @@ header a img {
   height: 70% ;
   width: auto;
   margin-left: 20%;
-  margin-top: 5%;
+  margin-top: 7%;
 }
 .viewButton {
   margin-bottom: 30%; 
@@ -158,7 +158,7 @@ footer {
 
 .deleteForm button{
   font-family: 'Righteous', cursive;
-  font-size: 150%;
+  font-size: 100%;
 }
 
 /* searches/show */
@@ -175,7 +175,7 @@ footer {
 .listOfSearchedGames button {
   border-radius: 5px;
   background-color: #506D2F;
-  font-size: 105%;
+  font-size: 195%;
   margin: 2%;
   padding: 1%;
 }

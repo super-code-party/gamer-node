@@ -16,6 +16,7 @@ header a img {
   height: 80% ;
   width: auto;
   margin-top: 5%;
+  margin-left: 20%;
 }
   
 header h1 {
@@ -109,6 +110,7 @@ footer {
   justify-content: center;
   align-items: center;
   margin: 3%;
+  text-align: center;
 }
 
 .detail h2{
@@ -129,6 +131,7 @@ footer {
 .updateForm button {
   background-color: #7D5646;
   font-family: 'Righteous', cursive;
+  margin-left: 5%;
 }
 
 .deleteForm{
@@ -139,7 +142,7 @@ footer {
 
 .deleteForm button{
   font-family: 'Righteous', cursive;
-  font-size: 200%;
+  font-size: 100%;
 }
 
 
@@ -154,7 +157,7 @@ footer {
 .listOfSearchedGames button {
   border-radius: 5px;
   background-color: #506D2F;
-  font-size: 120%;
+  font-size: 280%;
   margin: 2%;
   padding: 1%;
 }
