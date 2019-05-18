@@ -17,21 +17,50 @@
       </form>
     </section>
     <section class="gameCounter">
-      <p>Games in Storage: <%= results.length %></p>
+      <p>Games I want to play: <%= results.filter((game) => game.is_played === false ).length %></p>
     </section>  
+
+
     <section class="showContainer">
-      <% results.forEach(videoGames => { %>
-      <img src="<%= videoGames.cover_url %>"  alt="">
-      <h2><%= videoGames.name %> </h2>
-      <h2><%= videoGames.genres %></h2>
-      <a href="/games/<%=videoGames.id%>"><button class="viewButton">View Details</button></a> 
+      <% results.filter((game) => game.is_played === false ).forEach(videoGames => { %>
+        <section class="card">
+
+        <img src="<%= videoGames.cover_url %>"  alt="">
+        <h2><%= videoGames.name %> </h2>
+        <h2><%= videoGames.genres %></h2>
+        <a href="/games/<%=videoGames.id%>"><button class="viewButton">View Details</button></a> 
+      </section>
+        
       <% }) %>
     </section>
+
+    <section class="gameCounter">
+        <p>Games I have played: <%= results.filter((game) => game.is_played === true ).length %></p>
+      </section>  
+
+    <section class="showContainer">
+        <% results.filter((game) => game.is_played === true).forEach(videoGames => { %>
+        <section class="card">
+          <img src="<%= videoGames.cover_url %>"  alt="">
+          <h2><%= videoGames.name %> </h2>
+          <h2><%= videoGames.genres %></h2>
+          <a href="/games/<%=videoGames.id%>"><button class="viewButton">View Details</button></a> 
+      </section>
+          
+      <% }) %>
+    </section>
+  
+
+
 
 </main>
   <footer>
       <%-include('./pages/partials/footer')%>
   </footer>
-  
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="/js/app.js"></script>
 </body>
 </html>
