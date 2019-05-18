@@ -27,6 +27,10 @@ Version 1.0.4 - Update information already stored in database
 
 Version 1.0.5 - Delete information already stored in database
 
+Deployed Version: https://gamer-node.herokuapp.com/ \
+Deployed Version: https://gamer-node-2.herokuapp.com/ \
+Final Deployed Version: https://gamer-nodez.herokuapp.com/
+
 # Technologies Used
 Express\
 Dotenv\
@@ -63,9 +67,25 @@ game_modes.name - Single player
 involved_companies.company.name - Nintendo
 
 # Database schemas
-id SERIAL PRIMARY KEY,\
-  name VARCHAR,\
-  genres VARCHAR,\
-  release_date VARCHAR,\
-  summary VARCHAR,\
-  cover_url VARCHAR
+DROP TABLE IF EXISTS games; \
+DROP TABLE IF EXISTS genres;
+
+CREATE TABLE genres ( \
+  id SERIAL PRIMARY KEY, \
+  name VARCHAR \
+);
+
+CREATE TABLE games ( \
+  id SERIAL PRIMARY KEY, \
+  name VARCHAR, \
+  genres_id INT, \
+  FOREIGN KEY (genres_id) REFERENCES genres(id), \
+  release_date VARCHAR, \
+  summary VARCHAR, \
+  cover_url VARCHAR, \
+  platforms VARCHAR, \
+  rating VARCHAR, \
+  game_mode VARCHAR, \
+  company VARCHAR, \
+  is_played BOOLEAN \
+);
